@@ -16,8 +16,6 @@ jobs:
           node --check scripts/site.js
           node --check scripts/contact.js
           node --check server.mjs
-      - name: Render transparent financial PNG illustrations
-        run: node scripts/render-financial-art.mjs
       - name: Verify local pages and image references
         run: node scripts/check-site.mjs
       - name: Test real HTTP responses and the contact endpoint
