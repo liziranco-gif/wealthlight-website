@@ -20,3 +20,37 @@
 @media(max-width:980px){.site-header{height:74px}.site-nav{display:none;position:absolute;top:74px;left:0;right:0;background:#031423ec;padding:20px 6vw 30px;flex-direction:column;align-items:stretch;gap:0;max-height:calc(100vh - 74px);overflow-y:auto}.site-nav.is-open{display:flex}.site-nav a{font-size:13px;padding:14px 8px;border-bottom:1px solid var(--line)}.site-nav .nav-cta{margin:18px 0 0;max-width:280px}.nav-toggle{display:block}.hero-pillars{grid-template-columns:repeat(2,1fr);gap:20px 0}.hero-pillars article:nth-child(3){border-left:0;padding-left:0}.hero-pillars article{min-height:100px}.hero-data{display:none}.market-slices{grid-template-columns:repeat(2,1fr);gap:28px 0}.market-slice:nth-child(3){border-left:0}.steps{grid-template-columns:repeat(4,1fr)}.step:nth-child(4){border-right:0}.three-col{gap:20px}.line-column{padding-right:16px;padding-left:18px}.site-footer{grid-template-columns:1fr 1fr}.site-footer>nav{grid-column:1/-1}.closing-inner{align-items:flex-start;flex-direction:column}.closing-actions{justify-content:flex-start}}
 @media(max-width:640px){.shell{width:calc(100% - 36px)}.brand{font-size:24px}.site-header{padding:0 18px}.home-hero{min-height:850px}.home-hero-photo{background-position:58% center}.hero-inner{padding-top:145px}.hero-top h1{font-size:clamp(55px,14vw,88px)}.hero-top p:not(.eyebrow){font-size:16px}.hero-data{display:none}.hero-actions{gap:10px}.hero-pillars{grid-template-columns:1fr;padding-bottom:32px}.hero-pillars article,.hero-pillars article:first-child,.hero-pillars article:nth-child(3){border:0;border-top:1px solid var(--line);padding:13px 0;min-height:70px}.hero-pillars article h3{font-size:21px}.hero-pillars img{height:46px;width:46px}.content-section{padding:75px 0}.section-heading h2,.page-hero h1{font-size:clamp(44px,12vw,73px)}.section-heading>p:not(.eyebrow){font-size:16px}.wide-editorial,.service-lines{grid-template-columns:1fr}.editorial-quote{margin-top:10px}.three-col{grid-template-columns:1fr}.line-column,.line-column:first-child{border-left:0;border-top:1px solid var(--line);padding:25px 0}.steps{grid-template-columns:repeat(2,1fr)}.step:nth-child(even){border-right:0}.market-stage{padding:78px 0}.market-slices{grid-template-columns:1fr;gap:0}.market-slice{min-height:0;padding:28px 0;border-left:0;border-top:1px solid var(--line)}.market-slice:nth-child(3){border-top:1px solid var(--line)}.market-slice>p:not(.kicker){min-height:0}.market-stage-heading h2{font-size:49px}.page-hero{min-height:560px}.page-hero-copy{padding-block:140px 85px}.page-hero .lead{font-size:17px}.research-links{grid-template-columns:1fr}.research-links>a,.research-links>div{font-size:21px}.site-footer{grid-template-columns:1fr;padding:45px 18px}.site-footer>nav{grid-column:auto}.footer-bottom{flex-direction:column}.closing h2{font-size:58px}.intro-brand{width:88vw}.intro-caption{font-size:9px;letter-spacing:.19em}.intro-aura img{width:130vw}.intro-progress{bottom:45px}.intro-skip{bottom:25px;right:6%}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.intro{display:none!important}.home-hero-photo,.scene-photo{transform:none}}
+
+/* WealthLight visual QA v3: photo-led 10s logo intro + separate page atmospheres */
+.intro-scene{position:absolute;inset:0;z-index:0;overflow:hidden;opacity:0;animation:intro-scene-reveal 10s ease both;pointer-events:none}
+.intro-scene-photo{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,13,25,.8),rgba(2,13,25,.24) 67%,rgba(2,13,25,.08)),url('/assets/hero-mountains.jpg') center 53%/cover no-repeat;filter:brightness(.82) saturate(.87);transform:scale(1.055);animation:intro-scene-parallax 10s ease both}
+.intro-scene-fog{position:absolute;left:0;bottom:0;width:100%;height:70%;object-fit:cover;opacity:.32;mix-blend-mode:screen}
+.intro-aura{z-index:1}
+.intro-brand{z-index:5}
+.intro-caption{z-index:6;max-width:90vw;font-size:11px;letter-spacing:.2em}
+.intro-progress{z-index:7}
+.intro-skip{z-index:8}
+.intro-skip:focus-visible,.nav-toggle:focus-visible,.button:focus-visible,a:focus-visible{outline:2px solid #f3c785;outline-offset:4px}
+.brand-symbol{filter:brightness(0) invert(.92) drop-shadow(0 0 5px rgba(108,196,234,.26))}
+@keyframes intro-scene-reveal{
+0%,57%{opacity:0}
+68%{opacity:.16}
+80%{opacity:.45}
+90%,100%{opacity:.74}
+}
+@keyframes intro-scene-parallax{
+0%,58%{transform:scale(1.07) translateY(12px)}
+100%{transform:scale(1.005) translateY(0)}
+}
+.scene-about .scene-photo{background-image:linear-gradient(95deg,rgba(2,14,27,.39),rgba(2,14,27,.09)),url('/assets/perspective-global.png'),url('/assets/about-mountains.jpg');background-position:center,center 60%,center 50%;background-size:cover,cover,cover}
+.scene-perspective .scene-photo{background-image:url('/assets/perspective-global.png'),url('/assets/markets-mountains.jpg');background-position:center 65%,center 45%;background-size:cover,cover}
+@media(max-width:640px){
+.intro-scene-photo{background-position:58% center}
+.intro-scene-fog{height:48%}
+.intro-brand{width:min(88vw,430px)}
+.intro-caption{font-size:9px;letter-spacing:.14em}
+.scene-about .scene-photo,.scene-perspective .scene-photo{background-size:cover,auto 100%,cover}
+}
+@media(prefers-reduced-motion:reduce){
+.intro-scene,.intro-scene-photo{animation:none!important}
+}
