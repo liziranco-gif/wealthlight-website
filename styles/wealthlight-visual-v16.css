@@ -195,3 +195,23 @@ html body .closing::after{background:transparent!important}
  html body .page-hero .scene-photo,
  html body .market-stage .market-stage-photo{animation:none!important;transform:none!important}
 }
+
+/* Override prior v13 homepage market-grid/gradient overrides at exact specificity. */
+html body.home main > .market-stage:nth-of-type(n),
+html body[data-page="markets"] main > .market-stage:nth-of-type(n){
+ position:relative!important;isolation:isolate!important;overflow:hidden!important;
+ background-color:#061624!important;background-image:none!important
+}
+html body.home main > .market-stage:nth-of-type(n)::after,
+html body[data-page="markets"] main > .market-stage:nth-of-type(n)::after{
+ background-image:linear-gradient(90deg,rgba(3,15,28,.9),rgba(3,15,28,.59) 52%,rgba(3,15,28,.3)),
+ linear-gradient(180deg,rgba(4,16,28,.15),transparent 44%,rgba(6,22,36,.91))!important;
+ background:linear-gradient(90deg,rgba(3,15,28,.9),rgba(3,15,28,.59) 52%,rgba(3,15,28,.3)),
+ linear-gradient(180deg,rgba(4,16,28,.15),transparent 44%,rgba(6,22,36,.91))!important;
+}
+html body.home main > .market-stage:nth-of-type(n) .market-stage-photo{
+ background-image:url('/assets/markets-mountains.jpg')!important;background-size:cover!important;
+ background-position:58% 55%!important;animation:none!important;transform:none!important
+}
+/* Keep headings firmly above scenery on narrow screens, including translated text. */
+.site-header .brand-lockup .brand-title,.site-footer .footer-brand .brand-title{word-break:keep-all}
