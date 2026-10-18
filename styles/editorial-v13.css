@@ -158,3 +158,26 @@ body{background:#061522;color:#edf1f4}
 .content-section.section-pattern::after{background-image:linear-gradient(90deg,rgba(4,17,29,.72),rgba(4,17,29,.44)),url('/assets/market-landscape-v13.jpg?v=2')!important}
 .market-stage::after{background:linear-gradient(90deg,rgba(3,15,27,.72),rgba(3,15,27,.33)),linear-gradient(0deg,rgba(6,21,34,.72),transparent 36%,rgba(6,21,34,.12))!important}
 .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/market-landscape-v13.jpg?v=2')!important}
+/* v13.3 editorial scene map: each page and section gets its own visual context. */
+body.home .home-hero .home-hero-photo{background-image:url('/assets/market-landscape-v13.jpg?v=2')!important}
+body[data-page="about"] .page-hero .scene-photo,body[data-page="institutional-services"] .page-hero .scene-photo,body[data-page="contact"] .page-hero .scene-photo{background-image:url('/assets/about-mountains.jpg?v=1')!important}
+body[data-page="markets"] .page-hero .scene-photo,body[data-page="markets"] .market-stage-photo{background-image:url('/assets/markets-mountains.jpg?v=1')!important}
+body[data-page="research-&-insights"] .page-hero .scene-photo,body[data-page="approach"] .page-hero .scene-photo,body[data-page="strategies"] .page-hero .scene-photo{background-image:url('/assets/research-mountains.jpg?v=1')!important}
+body[data-page="risk-management"] .page-hero .scene-photo{background-image:url('/assets/hero-mountains.jpg?v=1')!important}
+body[data-page="technology"] .page-hero .scene-photo{background-image:url('/assets/research-mountains.jpg?v=2')!important}
+body[data-page="perspective"] .page-hero .scene-photo{background-image:url('/assets/about-mountains.jpg?v=2')!important}
+body[data-page="risk-disclosure"] .page-hero .scene-photo{background-image:url('/assets/hero-mountains.jpg?v=2')!important}
+/* Content bands alternate between research, global perspective and firm context. */
+.content-section:nth-of-type(odd)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/research-mountains.jpg?v=3')!important}
+.content-section:nth-of-type(even)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/about-mountains.jpg?v=3')!important}
+.content-section.section-pattern::after{background-image:linear-gradient(90deg,rgba(4,17,29,.72),rgba(4,17,29,.44)),url('/assets/perspective-global.png?v=1')!important}
+body.home .content-section:nth-of-type(2n+1)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/research-mountains.jpg?v=3')!important}
+body.home .content-section:nth-of-type(2n)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/about-mountains.jpg?v=3')!important}
+body[data-page="markets"] .content-section:nth-of-type(odd)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/markets-mountains.jpg?v=2')!important}
+body[data-page="research-&-insights"] .content-section:nth-of-type(odd)::after,body[data-page="approach"] .content-section:nth-of-type(odd)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/research-mountains.jpg?v=2')!important}
+body[data-page="about"] .content-section:nth-of-type(odd)::after,body[data-page="institutional-services"] .content-section:nth-of-type(odd)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/about-mountains.jpg?v=2')!important}
+body[data-page="risk-management"] .content-section:nth-of-type(odd)::after,body[data-page="technology"] .content-section:nth-of-type(odd)::after{background-image:linear-gradient(90deg,rgba(4,17,29,.76),rgba(4,17,29,.5) 55%,rgba(4,17,29,.28)),url('/assets/hero-mountains.jpg?v=2')!important}
+.closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/perspective-global.png?v=2')!important}
+body.home .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/market-landscape-v13.jpg?v=2')!important}
+body[data-page="markets"] .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/markets-mountains.jpg?v=2')!important}
+body[data-page="about"] .closing,body[data-page="institutional-services"] .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/about-mountains.jpg?v=2')!important}
