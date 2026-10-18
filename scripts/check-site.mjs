@@ -18,8 +18,19 @@ for(const page of pages){
  if(!/<h1\b/i.test(html))errors.push(page+': missing h1');
  for(const match of html.matchAll(/(?:src|href)=(["'])(.*?)\1/g))check(page,match[2]);
 }
-const css=readFileSync(path.join(root,'styles/site.css'),'utf8');
-for(const match of css.matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g))check('styles/site.css',match[1]);
+const cssFiles=readdirSync(path.join(root,'styles')).filter(f=>f.endsWith('.css'));
+for(const name of cssFiles){
+ const source=readFileSync(path.join(root,'styles',name),'utf8');
+ for(const match of source.matchAll(/url\\(\\s*['"]?([^'")]+)['"]?\\s*\\)/g))check('styles/'+name,match[1]);
+}
+const repair=readFileSync(path.join(root,'styles/scene-repair-v6.css'),'utf8');
+for(const name of ['wl-v6-mountain','wl-v6-trails','wl-v6-content-photo']){
+ if(!repair.includes('@keyframes '+name))errors.push('Missing motion animation '+name);
+}
+for(const page of pages){
+ if(!readFileSync(path.join(root,page),'utf8').includes('/styles/scene-repair-v6.css'))
+  errors.push(page+': missing new motion and background stylesheet');
+}
 for(const critical of ['wealthlight-logo-light.png','wealthlight-logo-original.png','hero-mountains.jpg','hero-fog.png','intro-energy-back.png','intro-energy.png']){
  if(!existsSync(path.join(root,'assets',critical)))errors.push('missing critical asset '+critical);
 }
