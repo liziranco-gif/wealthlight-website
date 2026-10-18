@@ -168,3 +168,22 @@ body[data-page="contact"] .page-hero .scene-photo{background-image:var(--photo-a
  .intro{display:none!important}
  .reveal-scroll{opacity:1!important;transform:none!important}
 }
+
+/* Image-only financial scenes v12.
+   These are completed JPG visual assets in the repository, not programmatic charts.
+   Browser CSS is used solely to place a finished image beneath the HTML text. */
+:root{
+ --photo-home:url('/assets/hero-mountains.jpg');
+ --photo-markets:url('/assets/markets-mountains.jpg');
+ --photo-research:url('/assets/research-mountains.jpg');
+ --photo-about:url('/assets/about-mountains.jpg');
+}
+.home-hero .home-hero-photo{background-image:var(--photo-home)!important}
+.page-hero.scene-markets .scene-photo{background-image:var(--photo-markets)!important}
+.page-hero.scene-research .scene-photo,
+.page-hero.scene-approach .scene-photo{background-image:var(--photo-research)!important}
+.page-hero.scene-about .scene-photo{background-image:var(--photo-about)!important}
+.market-stage .market-stage-photo{background-image:var(--photo-markets)!important}
+body[data-page="strategies"] .page-hero .scene-photo{background-image:var(--photo-research)!important}
+body[data-page="technology"] .page-hero .scene-photo{background-image:var(--photo-research)!important}
+body[data-page="institutional-services"] .page-hero .scene-photo{background-image:var(--photo-about)!important}
