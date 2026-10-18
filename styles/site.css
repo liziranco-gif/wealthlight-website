@@ -54,3 +54,25 @@
 @media(prefers-reduced-motion:reduce){
 .intro-scene,.intro-scene-photo{animation:none!important}
 }
+
+/* WealthLight visual QA v4: distinct source-photo composition and background depth */
+.scene-about .scene-photo{background-image:url('/assets/about-mountains.jpg');background-size:cover;background-position:65% 42%}
+.scene-perspective .scene-photo{background-image:url('/assets/markets-mountains.jpg');background-size:cover;background-position:center 62%}
+.scene-about .scene-overlay-art{opacity:.39;object-position:center 65%}
+.scene-perspective .scene-overlay-art{opacity:.5;object-position:center 67%}
+body[data-page="technology"] .scene-photo{background-image:url('/assets/research-mountains.jpg');background-position:75% 57%;filter:saturate(.79) hue-rotate(6deg)}
+body[data-page="technology"] .scene-overlay-art{opacity:.46}
+body[data-page="strategies"] .scene-photo{background-image:url('/assets/markets-mountains.jpg');background-position:48% 65%;filter:saturate(.9) brightness(.85)}
+body[data-page="capabilities"] .scene-photo{background-position:58% 51%}
+body[data-page="institutional-services"] .scene-photo{background-image:url('/assets/hero-mountains.jpg');background-position:70% 52%;filter:saturate(.78)}
+body[data-page="institutional-services"] .scene-overlay-art{opacity:.28}
+body[data-page="risk-management"] .scene-darken{background:linear-gradient(90deg,rgba(1,11,21,.97),rgba(3,17,29,.83) 53%,rgba(3,17,29,.48)),linear-gradient(180deg,rgba(3,16,28,.18),rgba(3,16,28,.82))}
+.home .content-section.section-dark{background-image:linear-gradient(90deg,rgba(2,13,25,.95),rgba(3,17,29,.84)),url('/assets/research-mountains.jpg');background-size:cover;background-position:center 61%}
+.home .content-section.section-pattern{background-image:linear-gradient(90deg,rgba(3,16,29,.97),rgba(3,16,29,.74)),url('/assets/perspective-global.png');background-size:cover;background-position:center 52%}
+.home .content-section.section-soft{background-image:linear-gradient(100deg,rgba(2,12,24,.96),rgba(3,16,30,.77)),url('/assets/markets-mountains.jpg');background-size:cover;background-position:center 50%}
+.home .content-section .section-heading,.home .content-section .wide-editorial,.home .content-section .three-col,.home .content-section .service-lines{position:relative;z-index:1}
+@media(max-width:640px){
+.scene-about .scene-photo{background-position:70% center}
+.scene-perspective .scene-photo{background-position:62% center}
+.home .content-section.section-dark,.home .content-section.section-pattern,.home .content-section.section-soft{background-position:65% center}
+}
