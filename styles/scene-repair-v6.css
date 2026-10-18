@@ -68,16 +68,16 @@ body[data-page="technology"] .page-hero .scene-overlay-art{opacity:.52!important
 .content-section.section-pattern{background-color:#071c2d!important}
 .content-section::before{
  content:"";position:absolute;inset:-6% -4%;z-index:0!important;pointer-events:none;
- background:url('/assets/research-light-trails.png') center 60%/cover no-repeat;
+ background:url('/assets/hero-fog.png') center 60%/cover no-repeat;
  opacity:.12;mix-blend-mode:screen;
  -webkit-mask-image:linear-gradient(to bottom,transparent 1%,#000 29%,#000 68%,transparent 100%);
  mask-image:linear-gradient(to bottom,transparent 1%,#000 29%,#000 68%,transparent 100%);
  animation:wl-v7-photo-glow 26s ease-in-out infinite alternate;
 }
 .content-section:nth-of-type(3n)::before{
- background-image:url('/assets/markets-light-trails.png');background-position:70% 56%;opacity:.11;
+ background-image:url('/assets/hero-fog.png');background-position:70% 56%;opacity:.08;
 }
-.content-section:nth-of-type(3n + 1)::before{opacity:.08;background-position:30% 50%}
+.content-section:nth-of-type(3n + 1)::before{opacity:.07;background-position:30% 50%}
 .content-section::after{
  content:"";position:absolute;inset:0;z-index:1!important;pointer-events:none;
  background:radial-gradient(ellipse at 87% 40%,rgba(49,99,132,.13),transparent 50%);
