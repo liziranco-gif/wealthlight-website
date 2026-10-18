@@ -181,3 +181,5 @@ body[data-page="risk-management"] .content-section:nth-of-type(odd)::after,body[
 body.home .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/market-landscape-v13.jpg?v=2')!important}
 body[data-page="markets"] .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/markets-mountains.jpg?v=2')!important}
 body[data-page="about"] .closing,body[data-page="institutional-services"] .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/about-mountains.jpg?v=2')!important}
+/* Avoid repeating the Markets hero scene immediately below the fold. */
+body[data-page="markets"] .market-stage .market-stage-photo{background-image:linear-gradient(180deg,rgba(4,17,29,.2),rgba(4,17,29,.5)),url('/assets/markets-light-trails.png?v=1')!important;background-size:cover,cover!important;background-position:center,center!important}
