@@ -214,3 +214,14 @@ body[data-page="markets"] .market-stage .market-stage-photo{background-image:lin
 .page-hero h1{font-size:clamp(52px,6.2vw,86px)!important;line-height:1.02!important}
 .closing h2{font-size:clamp(42px,4.3vw,70px)!important}
 @media(max-width:640px){.content-section .section-heading h2,.market-stage-heading h2{font-size:36px!important}.line-column{min-height:0}.service-lines>div{padding:22px!important}.research-links{padding:0 13px}.page-hero h1{font-size:52px!important}}
+/* v13.5 remove repeated scenery: mountain photography is reserved for the page hero only. */
+.content-section::after,.content-section.section-pattern::after{background-image:none!important;background:linear-gradient(135deg,rgba(9,30,47,.98),rgba(4,18,31,.98) 58%,rgba(7,28,45,.96))!important;opacity:1!important}
+.content-section:nth-of-type(odd)::after,.content-section:nth-of-type(even)::after{background-image:none!important}
+.content-section.section-pattern::after{background:radial-gradient(circle at 82% 18%,rgba(65,135,170,.14),transparent 32%),linear-gradient(135deg,#0a263b,#061724 64%,#081e31)!important}
+.steps .step{background:linear-gradient(145deg,rgba(14,46,66,.9),rgba(4,20,34,.95))!important;background-image:linear-gradient(145deg,rgba(14,46,66,.9),rgba(4,20,34,.95))!important}
+.market-stage{background:radial-gradient(circle at 78% 22%,rgba(50,116,151,.2),transparent 32%),linear-gradient(135deg,#0a263b,#061724 66%,#081e31)!important}
+.market-stage .market-stage-photo{display:none!important}
+.market-stage::after{background:linear-gradient(90deg,rgba(4,18,31,.1),rgba(4,18,31,.3)),radial-gradient(circle at 82% 22%,rgba(239,189,120,.12),transparent 24%)!important}
+.market-slices{background:rgba(3,17,29,.48)!important}
+.closing{background:radial-gradient(circle at 75% 20%,rgba(65,135,170,.16),transparent 30%),linear-gradient(135deg,#0a263b,#061724 68%,#081e31)!important}
+body.home .closing,body[data-page="markets"] .closing,body[data-page="about"] .closing,body[data-page="institutional-services"] .closing{background:radial-gradient(circle at 75% 20%,rgba(65,135,170,.16),transparent 30%),linear-gradient(135deg,#0a263b,#061724 68%,#081e31)!important}
