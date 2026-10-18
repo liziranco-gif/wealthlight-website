@@ -32,12 +32,18 @@ try{
 
  const contactHTML=await (await fetch(base+'/contact.html')).text();
  assert.ok(contactHTML.includes('wealthlight-contact-form'),'Contact page missing real form');
- assert.ok(contactHTML.includes('action="https://formsubmit.co/hr@wealthlight.net"'),'Contact must forward directly to the official WealthLight inbox');
+ assert.ok(contactHTML.includes('action="https://formsubmit.co/ajax/hr@wealthlight.net"'),'Contact must submit to the same-page AJAX endpoint');
+ assert.ok(contactHTML.includes('name="_subject" value="有人在你的网站中留言了"'),'Notify the official inbox with the requested Chinese email subject');
+ assert.ok(!contactHTML.includes('name="_next"'),'Contact must not redirect to external or secondary pages');
+ assert.ok(contactHTML.includes('Submission Successful.'),'Submission confirmation must display inside the contact page');
  assert.ok(contactHTML.includes('name="_captcha" value="false"'),'Contact should not redirect users to FormSubmit reCAPTCHA page');
  assert.ok(contactHTML.includes('name="_honey"'),'Keep spam honeypot on contact form');
  assert.ok(!/<button[^>]+id="wl-form-submit"[^>]+disabled/.test(contactHTML),'Public contact submission must be enabled');
  const contactJS=await (await fetch(base+'/scripts/contact.js')).text();
  assert.ok(!contactJS.includes('/api/contact/status'),'Contact page must not depend on Resend API configuration');
+ assert.ok(contactJS.includes('event.preventDefault()'),'Form submit must not navigate away');
+ assert.ok(contactJS.includes("result.success===true||result.success==='true'"),'Only truthfully accepted FormSubmit messages show success');
+ assert.ok(contactJS.includes('form.hidden=true')&&contactJS.includes('success.hidden=false'),'Success is shown inline after confirmed acceptance');
  const status=await(await fetch(base+'/api/contact/status')).json();
  assert.equal(status.ready,false,'Should not enable contact without configured recipient');
  const result=await fetch(base+'/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName:'Test',email:'test@example.com'})});
