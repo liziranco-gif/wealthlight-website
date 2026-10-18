@@ -1,0 +1,170 @@
+/*
+ * WealthLight Photography & Motion / V10
+ * Genuine mountain photographs (Unsplash License) replace generated mountain composites.
+ * All words, brand marks and controls remain real DOM elements.
+ * Intentionally no artificial light trails, rings, particle skies or infinite image zoom.
+ */
+
+/* Reliable original photo sources, separately framed for different pages. */
+:root{
+ --photo-home:url("https://images.unsplash.com/photo-1534302000698-2f5e30b10bdb?auto=format&fit=crop&w=2600&q=88");
+ --photo-about:url("https://images.unsplash.com/photo-1530571348026-fd44a9981b00?auto=format&fit=crop&w=2400&q=86");
+ --photo-markets:url("https://images.unsplash.com/photo-1768716202083-eff92e83d170?auto=format&fit=crop&w=2400&q=86");
+ --photo-research:url("https://images.unsplash.com/photo-1769769436014-cbc877dac612?auto=format&fit=crop&w=2400&q=86");
+ --photo-risk:url("https://images.unsplash.com/photo-1762878099772-4ba09dfdc9aa?auto=format&fit=crop&w=2400&q=85");
+ --photo-institutional:url("https://images.unsplash.com/photo-1753010835776-3fd4bf38ef3c?auto=format&fit=crop&w=2400&q=86");
+ --photographic-base:#071725;
+}
+.home-hero,.page-hero,.market-stage{background:var(--photographic-base)!important}
+
+/* Do not animate or blur the camera photograph: sharp, still, naturally lit. */
+.home-hero .home-hero-photo{
+ position:absolute!important;inset:0!important;z-index:0!important;
+ background-image:var(--photo-home)!important;
+ background-size:cover!important;background-position:center 52%!important;background-repeat:no-repeat!important;
+ animation:none!important;transform:none!important;
+ filter:none!important;opacity:1!important;will-change:auto!important;
+}
+.page-hero .scene-photo{
+ position:absolute!important;inset:0!important;z-index:0!important;
+ background-size:cover!important;background-repeat:no-repeat!important;
+ animation:none!important;transform:none!important;
+ filter:none!important;opacity:1!important;will-change:auto!important;
+}
+.page-hero.scene-about .scene-photo{background-image:var(--photo-about)!important;background-position:50% 57%!important}
+.page-hero.scene-markets .scene-photo{background-image:var(--photo-markets)!important;background-position:55% 51%!important}
+.page-hero.scene-research .scene-photo,
+.page-hero.scene-approach .scene-photo{background-image:var(--photo-research)!important;background-position:57% 53%!important}
+.page-hero.scene-risk .scene-photo{background-image:var(--photo-risk)!important;background-position:54% 50%!important}
+.page-hero.scene-perspective .scene-photo{background-image:var(--photo-about)!important;background-position:60% 49%!important}
+body[data-page="technology"] .page-hero .scene-photo{background-image:var(--photo-research)!important;background-position:68% 53%!important}
+body[data-page="strategies"] .page-hero .scene-photo{background-image:var(--photo-institutional)!important;background-position:54% 52%!important}
+body[data-page="institutional-services"] .page-hero .scene-photo{background-image:var(--photo-institutional)!important;background-position:56% 51%!important}
+body[data-page="contact"] .page-hero .scene-photo{background-image:var(--photo-about)!important;background-position:65% 50%!important}
+
+/* One continuous documentary photograph, with only a text-safe soft gradient. */
+.home-hero .home-hero-shade{
+ z-index:2!important;inset:0!important;
+ background:linear-gradient(90deg,rgba(2,14,27,.89) 0%,rgba(2,14,27,.67) 32%,rgba(2,14,27,.34) 65%,rgba(2,14,27,.12) 100%),
+ linear-gradient(180deg,rgba(2,14,27,.28),transparent 39%,rgba(5,20,33,.88) 100%)!important;
+}
+.page-hero .scene-darken{
+ z-index:2!important;
+ background:linear-gradient(90deg,rgba(2,14,26,.84),rgba(2,14,26,.57) 49%,rgba(2,14,26,.14)),
+ linear-gradient(180deg,rgba(3,15,29,.17),transparent 48%,rgba(6,24,38,.86) 100%)!important;
+}
+.page-hero::after{
+ height:110px!important;bottom:-1px!important;top:auto!important;
+ background:linear-gradient(180deg,transparent,#071a2b)!important;
+}
+.home-hero .hero-inner,.home-hero .hero-pillars{position:relative!important;z-index:4!important}
+.page-hero .page-hero-copy{position:relative!important;z-index:4!important}
+.market-stage .market-stage-photo{
+ position:absolute!important;inset:0!important;z-index:0!important;
+ background-image:var(--photo-markets)!important;
+ background-position:center 52%!important;background-size:cover!important;
+ animation:none!important;transform:none!important;filter:none!important;
+}
+.market-stage::after{
+ z-index:2!important;
+ background:linear-gradient(90deg,rgba(3,14,27,.91),rgba(3,14,27,.72) 44%,rgba(3,14,27,.38)),
+ linear-gradient(180deg,rgba(3,14,27,.35),transparent 51%,rgba(3,14,27,.75))!important;
+}
+.market-stage .shell{position:relative!important;z-index:4!important}
+
+/* Remove the graphics that made the mountain composites look AI-generated. */
+.home-hero .home-hero-fog,
+.page-hero .scene-overlay-art,
+.market-stage .market-overlay,
+.intro .intro-aura,
+.intro .intro-scene-fog{
+ display:none!important;
+ animation:none!important;
+}
+.content-section::before,.closing::before{display:none!important;animation:none!important}
+.content-section,
+.content-section.section-dark,
+.content-section.section-soft,
+.content-section.section-pattern{
+ background-image:none!important;
+}
+.content-section{background:#071a2b!important}
+.content-section.section-dark{background:#071624!important}
+.content-section.section-soft{background:#0a1d2e!important}
+.content-section.section-pattern{background:#071a2b!important}
+.content-section::after{
+ background:linear-gradient(180deg,rgba(2,12,22,.07),transparent 60%)!important;
+ animation:none!important;
+}
+.closing{background:#071a2b!important}
+
+/* Ten-second intro from first frame to fully hidden; no extra 1.1 seconds.
+   Photo behind the original logo is the SAME photo used by the home hero. */
+.intro{
+ background:#061624!important;
+ transition:opacity 1s cubic-bezier(.22,.6,.3,1),visibility 1s!important;
+}
+.intro .intro-brand{
+ position:relative!important;z-index:5!important;
+ padding:0!important;background:none!important;border:0!important;box-shadow:none!important;
+ width:min(71vw,570px)!important;
+ animation:wl-v10-brand 9s ease-in-out both!important;
+ transform:none!important;
+}
+.intro .intro-brand img{
+ width:100%;height:auto;filter:none!important;
+}
+.intro .intro-caption{
+ color:#ced5d8!important;font-size:10px!important;letter-spacing:.18em!important;
+ animation:wl-v10-caption 9s ease-in-out both!important;
+}
+.intro .intro-scene{
+ position:absolute!important;inset:0!important;z-index:0!important;
+ animation:wl-v10-photo-reveal 9s ease-in-out both!important;
+}
+.intro .intro-scene-photo{
+ position:absolute!important;inset:0!important;
+ background-image:linear-gradient(90deg,rgba(3,15,28,.78),rgba(3,15,28,.34) 60%,rgba(3,15,28,.16)),var(--photo-home)!important;
+ background-position:center,center 52%!important;background-size:cover,cover!important;
+ filter:none!important;transform:none!important;animation:none!important;
+}
+.intro .intro-progress{
+ height:1px!important;background:rgba(238,244,247,.19)!important;
+}
+.intro .intro-progress i{
+ background:#c3d0d5!important;
+ animation:wl-v10-progress 9s linear both!important;
+}
+.intro .intro-skip{
+ color:#d8e1e6!important;
+ transition:color .2s ease!important;
+}
+@keyframes wl-v10-brand{
+ 0%,9%{opacity:0;transform:translateY(5px)}
+ 23%,68%{opacity:1;transform:translateY(0)}
+ 82%,100%{opacity:0;transform:translateY(0)}
+}
+@keyframes wl-v10-caption{
+ 0%,31%{opacity:0}
+ 45%,68%{opacity:.63}
+ 80%,100%{opacity:0}
+}
+@keyframes wl-v10-photo-reveal{
+ 0%,54%{opacity:0}
+ 75%{opacity:.45}
+ 96%,100%{opacity:1}
+}
+@keyframes wl-v10-progress{from{width:0}to{width:100%}}
+
+/* Text motion occurs only once on entry; no oscillation or infinite movement. */
+.reveal-scroll:not(.is-revealed){transform:translateY(7px)!important}
+.reveal-scroll.is-revealed{transition:opacity .6s ease var(--reveal-delay,0ms),transform .6s ease var(--reveal-delay,0ms)!important}
+@media(max-width:850px){
+ .home-hero .home-hero-photo{background-position:58% 53%!important}
+ .page-hero .scene-photo{background-position:62% center!important}
+ .intro .intro-brand{width:min(80vw,490px)!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .intro{display:none!important}
+ .reveal-scroll{opacity:1!important;transform:none!important}
+}
