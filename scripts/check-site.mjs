@@ -21,7 +21,7 @@ for(const page of pages){
 const cssFiles=readdirSync(path.join(root,'styles')).filter(f=>f.endsWith('.css'));
 for(const name of cssFiles){
  const source=readFileSync(path.join(root,'styles',name),'utf8');
- for(const match of source.matchAll(/url\\(\\s*['"]?([^'")]+)['"]?\\s*\\)/g))check('styles/'+name,match[1]);
+ for(const match of source.matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g))check('styles/'+name,match[1]);
 }
 const repair=readFileSync(path.join(root,'styles/scene-repair-v6.css'),'utf8');
 for(const name of ['wl-v6-mountain','wl-v6-trails','wl-v6-content-photo']){
