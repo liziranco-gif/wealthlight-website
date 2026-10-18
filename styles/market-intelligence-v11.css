@@ -1,0 +1,85 @@
+/* WealthLight / Market Intelligence 11
+   Genuine transparent PNG chart assets, pre-rendered once by build script.
+   No canvas / SVG or chart drawing code runs in the visitor's browser.
+   Chart geometry is schematic: NOT live quotes, backtests, signals or performance.
+*/
+.home-hero,.page-hero,.market-stage{isolation:isolate!important}
+.wl-financial-art{
+ position:absolute!important;z-index:3!important;pointer-events:none;
+ width:100%;height:100%;inset:0;overflow:hidden;
+}
+.wl-financial-art>img{
+ display:block;position:absolute;
+ width:100%;height:100%;inset:0;object-fit:cover;
+ opacity:.54;mix-blend-mode:screen;
+ -webkit-mask-image:linear-gradient(90deg,transparent 23%,rgba(0,0,0,.12) 34%,#000 54%,#000 100%);
+ mask-image:linear-gradient(90deg,transparent 23%,rgba(0,0,0,.12) 34%,#000 54%,#000 100%);
+ animation:wl-chart-reveal 1.9s ease-out .6s both;
+}
+/* Chart stays anchored to the mountain instead of flying or scaling across it. */
+@keyframes wl-chart-reveal{from{opacity:0;transform:translateY(7px)}to{opacity:.54;transform:none}}
+.home-hero .wl-financial-art>img{opacity:.58}
+.page-hero.scene-markets .wl-financial-art>img{opacity:.64}
+.page-hero.scene-research .wl-financial-art>img,
+.page-hero.scene-approach .wl-financial-art>img{opacity:.5}
+.page-hero.scene-risk .wl-financial-art>img{opacity:.35}
+.page-hero.scene-about .wl-financial-art>img,
+body[data-page="contact"] .wl-financial-art>img{opacity:.27}
+.page-hero .scene-darken{z-index:2!important}
+.page-hero .page-hero-copy{position:relative;z-index:5!important}
+.home-hero .hero-inner,.home-hero .hero-pillars{position:relative;z-index:5!important}
+.market-stage .shell{z-index:5!important}
+.wl-market-identity{
+ position:absolute;z-index:5;right:max(5.5vw,24px);top:27%;
+ width:min(270px,23vw);border-left:1px solid rgba(227,198,148,.62);
+ padding:10px 0 9px 20px;color:#f0e8df;pointer-events:none;
+ text-shadow:0 1px 8px rgba(0,10,20,.8);
+}
+.wl-market-identity .wl-id-kicker{display:block;color:#e6bb7a;font:10px/1.5 ui-monospace,monospace;letter-spacing:.18em}
+.wl-market-identity strong{display:block;font:clamp(15px,1.3vw,22px)/1.34 Georgia,serif;font-weight:400;margin:9px 0 12px;color:#f4f8fc}
+.wl-market-identity span:last-child{display:block;color:#c5d9e5;font:10px/1.75 ui-monospace,monospace;letter-spacing:.12em}
+.page-hero .wl-market-identity{top:auto;bottom:28%;right:7%;width:250px}
+.wl-research-ribbon{
+ position:relative;isolation:isolate;overflow:hidden;background:#071a2b;
+ border-top:1px solid rgba(185,217,235,.13);border-bottom:1px solid rgba(185,217,235,.13);
+}
+.wl-research-ribbon .wl-ribbon-inner{
+ position:relative;z-index:2;width:min(89%,1480px);margin:0 auto;
+ display:grid;grid-template-columns:1.25fr repeat(4,1fr);align-items:center;gap:0;
+ padding:22px 0;
+}
+.wl-research-ribbon .wl-ribbon-heading{font:10px/1.6 ui-monospace,monospace;letter-spacing:.16em;color:#e9c48c}
+.wl-research-ribbon .wl-ribbon-cell{
+ color:#d6e5ee;border-left:1px solid rgba(196,225,244,.21);
+ padding:0 16px;font-size:13px;letter-spacing:.035em;
+}
+.wl-research-ribbon .wl-ribbon-cell b{display:block;color:#fff;font:17px/1.2 Georgia,serif;margin-top:4px}
+.wl-research-ribbon .wl-ribbon-cell small{color:#9db3c3;font-size:10px;letter-spacing:.14em}
+.wl-study-graphics .content-section.section-pattern::before,
+.wl-study-graphics .content-section.section-soft:nth-of-type(odd)::before{
+ display:block!important;content:"";position:absolute;z-index:0!important;
+ inset:0;background:url('/assets/market-analysis.png') center 58%/cover no-repeat!important;
+ opacity:.12!important;pointer-events:none;animation:none!important;
+ -webkit-mask-image:linear-gradient(to bottom,transparent,#000 28%,#000 70%,transparent 100%);
+ mask-image:linear-gradient(to bottom,transparent,#000 28%,#000 70%,transparent 100%);
+}
+.wl-study-graphics .content-section>.shell{position:relative;z-index:2}
+@media(max-width:1120px){
+ .wl-market-identity{display:none}
+ .wl-financial-art>img{opacity:.44}
+}
+@media(max-width:700px){
+ .wl-financial-art>img{
+  width:155%;height:86%;inset:7% auto auto -42%;
+  opacity:.3!important;
+  -webkit-mask-image:linear-gradient(90deg,transparent 28%,#000 72%);
+  mask-image:linear-gradient(90deg,transparent 28%,#000 72%);
+ }
+ .wl-research-ribbon .wl-ribbon-inner{grid-template-columns:repeat(2,1fr);gap:14px;padding:20px 0}
+ .wl-research-ribbon .wl-ribbon-heading{grid-column:1/-1}
+ .wl-research-ribbon .wl-ribbon-cell{padding:0 11px}
+ .wl-research-ribbon .wl-ribbon-cell b{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ .wl-financial-art>img{animation:none!important;transform:none!important}
+}
