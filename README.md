@@ -1,7 +1,5 @@
-# WealthLight Website
+# WealthLight website — P2 cinematic implementation
 
-Source-controlled rebuild of the WealthLight website. Visual direction: P2 cinematic mountain landscape, high-contrast typography, open market columns, responsive pages.
+Real self-hosted photographic scenes and transparent PNG motion assets. Source documents are the Derivatives Strategy Website Template and the agreed WealthLight website plan.
 
-This is a reconstructed project, not a lossless extraction of the former Railway Function. Keep the former deployment as a backup until the new version has been visually verified.
-
-Deploy on Railway using the supplied Dockerfile (nginx, port 80).
+This is a preview, not yet compliance-approved public marketing. Run locally with `python3 -m http.server 8080` from this directory. On Railway use Dockerfile and nginx port 80.
