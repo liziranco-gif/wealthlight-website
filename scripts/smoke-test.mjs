@@ -20,12 +20,16 @@ async function waitForServer(){
 }
 try{
  await waitForServer();
- for(const url of ['/','/index.html','/about.html','/markets.html','/research.html','/risk.html','/contact.html','/styles/site.css','/scripts/site.js','/scripts/contact.js','/assets/hero-mountains.jpg']){
+ for(const url of ['/','/index.html','/about.html','/markets.html','/research.html','/risk.html','/contact.html','/styles/site.css','/scripts/site.js','/scripts/contact.js','/assets/hero-mountains.jpg','/styles/market-intelligence-v11.css','/assets/market-trends.png','/assets/market-analysis.png','/assets/risk-volatility.png']){
   const r=await fetch(base+url);
   assert.equal(r.status,200,url+' must be served');
   const b=await r.arrayBuffer();
   assert.ok(b.byteLength>20,url+' must not be empty');
  }
+ const homeHTML=await (await fetch(base+'/index.html')).text();
+ assert.ok(homeHTML.includes('market-trends.png')&&homeHTML.includes('wl-research-ribbon'),'Financial research visual layers not installed');
+ const png=Buffer.from(await (await fetch(base+'/assets/market-trends.png')).arrayBuffer());
+ assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a','Financial art must be genuine PNG bytes');
  const contactHTML=await (await fetch(base+'/contact.html')).text();
  assert.ok(contactHTML.includes('wealthlight-contact-form'),'Contact page missing real form');
  const status=await(await fetch(base+'/api/contact/status')).json();
