@@ -76,3 +76,114 @@ body[data-page="risk-management"] .scene-darken{background:linear-gradient(90deg
 .scene-perspective .scene-photo{background-position:62% center}
 .home .content-section.section-dark,.home .content-section.section-pattern,.home .content-section.section-soft{background-position:65% center}
 }
+
+/* WL CINEMATIC MOTION + CONTACT V5 */
+/* Real image layers are retained; motion is only transform, opacity and lighting. */
+:root{--motion-blue:rgba(93,191,245,.23);--motion-gold:rgba(235,192,116,.19)}
+html{scroll-behavior:smooth}
+.page-hero{background:#071827;isolation:isolate}
+.page-hero .scene-photo{background-size:cover;background-repeat:no-repeat;transform:translateY(var(--parallax-shift,0px)) scale(1.075);animation:wl-landscape-float 35s ease-in-out infinite alternate;will-change:transform}
+.page-hero .scene-overlay-art{object-fit:cover;object-position:center 60%;z-index:-2;mix-blend-mode:screen;filter:drop-shadow(0 0 14px rgba(104,198,244,.18));animation:wl-luminous-drift 21s ease-in-out infinite alternate}
+.page-hero .scene-darken{z-index:-1;background:linear-gradient(90deg,rgba(1,11,22,.90),rgba(3,19,34,.54) 52%,rgba(4,22,38,.2)),linear-gradient(180deg,#02132070,transparent 44%,#061522ae)}
+.page-hero:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 77% 46%,rgba(224,187,127,.08),transparent 42%);animation:wl-ambient-glow 19s ease-in-out infinite alternate}
+.page-hero-copy{position:relative;z-index:2}
+.page-hero h1,.page-hero .lead{text-shadow:0 3px 16px rgba(0,8,17,.69)}
+.scene-about .scene-photo{background-image:url('/assets/about-mountains.jpg')}
+.scene-markets .scene-photo{background-image:url('/assets/markets-mountains.jpg')}
+.scene-research .scene-photo,.scene-approach .scene-photo{background-image:url('/assets/research-mountains.jpg')}
+.scene-risk .scene-photo{background-image:url('/assets/hero-mountains.jpg');filter:saturate(.72) brightness(.76)}
+.scene-perspective .scene-photo{background-image:url('/assets/markets-mountains.jpg')}
+body[data-page="technology"] .scene-photo{background-image:url('/assets/research-mountains.jpg');background-position:78% 56%;filter:saturate(.81) hue-rotate(-4deg)}
+body[data-page="strategies"] .scene-photo{background-image:url('/assets/markets-mountains.jpg');background-position:60% 50%;filter:saturate(.91)}
+body[data-page="institutional-services"] .scene-photo{background-image:url('/assets/about-mountains.jpg');background-position:75% 49%;filter:saturate(.8)}
+body[data-page="contact"] .scene-photo{background-image:url('/assets/about-mountains.jpg');background-position:64% 48%;filter:saturate(.86)}
+body[data-page="risk-management"] .scene-overlay-art{opacity:.23;filter:saturate(.7)}
+body[data-page="technology"] .scene-overlay-art{opacity:.55}
+body[data-page="institutional-services"] .scene-overlay-art{opacity:.27}
+/* Bring distinct, quieter photo atmospheres to long-form sections. */
+.content-section{position:relative;isolation:isolate;overflow:hidden}
+.content-section .shell{position:relative;z-index:1}
+.content-section.section-dark{background:linear-gradient(90deg,rgba(3,13,25,.96),rgba(4,18,30,.87)),url('/assets/research-mountains.jpg') center 55%/cover no-repeat}
+.content-section.section-soft{background:linear-gradient(110deg,rgba(3,14,27,.96),rgba(5,22,36,.80)),url('/assets/about-mountains.jpg') center 57%/cover no-repeat}
+.content-section.section-pattern{background:linear-gradient(100deg,rgba(3,13,25,.95),rgba(4,21,35,.79)),url('/assets/markets-mountains.jpg') center 63%/cover no-repeat}
+.content-section:nth-of-type(even):not(.section-dark):not(.section-pattern):not(.section-soft){background:linear-gradient(90deg,rgba(3,16,29,.94),rgba(6,22,38,.87)),url('/assets/about-mountains.jpg') center 63%/cover no-repeat}
+.market-stage-photo{background-position:50% calc(50% + var(--parallax-shift,0px));animation:wl-landscape-float 32s ease-in-out infinite alternate}
+.market-overlay{animation:wl-luminous-drift 23s ease-in-out infinite alternate}
+.home-hero-fog{animation:wl-fog-breathe 23s ease-in-out infinite alternate}
+.intro-aura img{will-change:transform,opacity}
+.intro-aura-back{animation:wl-intro-aura-back 10s cubic-bezier(.23,.54,.38,1) both!important}
+.intro-aura-front{animation:wl-intro-aura-front 10s cubic-bezier(.23,.54,.38,1) both!important}
+.intro-scene-fog{animation:wl-fog-breathe 10s ease-in-out both}
+.intro-skip{min-width:110px;cursor:pointer}
+.button,.text-link,.market-slice,.line-column,.step,.research-links>a{transition:transform .38s ease,background .38s ease,border-color .38s ease,box-shadow .38s ease}
+.market-slice:hover,.line-column:hover{transform:translateY(-5px)}
+.step:hover,.research-links>a:hover{background:rgba(119,197,238,.07);transform:translateY(-3px)}
+.market-slice:hover img{transform:translateY(-6px) scale(1.07)}
+.market-slice img{transition:transform .55s ease;filter:drop-shadow(0 0 14px rgba(136,210,243,.2))}
+@keyframes wl-landscape-float{0%{transform:translateY(var(--parallax-shift,0px)) scale(1.075)}100%{transform:translateY(var(--parallax-shift,0px)) translateX(-14px) scale(1.105)}}
+@keyframes wl-luminous-drift{0%{transform:translate3d(-1%,0,0) scale(1.04);opacity:.28}50%{opacity:.58}100%{transform:translate3d(1.3%,-1%,0) scale(1.075);opacity:.33}}
+@keyframes wl-fog-breathe{0%{transform:translate3d(-2%,0,0) scale(1.035);opacity:.2}50%{opacity:.42}100%{transform:translate3d(2%,-1.5%,0) scale(1.06);opacity:.26}}
+@keyframes wl-ambient-glow{0%{opacity:.5}100%{opacity:1}}
+@keyframes wl-intro-aura-back{
+0%,15%{opacity:0;transform:translateY(20px) scale(.62) rotate(-8deg)}
+35%{opacity:.28;transform:translateY(7px) scale(.88) rotate(-5deg)}
+55%{opacity:.58;transform:translateY(0) scale(1.02) rotate(-2deg)}
+75%{opacity:.49;transform:scale(1.06) rotate(1deg)}
+90%,100%{opacity:0;transform:scale(1.15) rotate(4deg)}
+}
+@keyframes wl-intro-aura-front{
+0%,22%{opacity:0;transform:translateY(10px) scale(.64) rotate(10deg)}
+43%{opacity:.3;transform:translateY(0) scale(.96) rotate(5deg)}
+59%{opacity:.65;transform:scale(1.025) rotate(0deg)}
+76%{opacity:.43;transform:scale(1.07) rotate(-2deg)}
+91%,100%{opacity:0;transform:scale(1.13) rotate(-5deg)}
+}
+.reveal-scroll{opacity:1;transform:none}
+@media(prefers-reduced-motion:no-preference){
+.reveal-scroll:not(.is-revealed){opacity:0;transform:translateY(24px)}
+.reveal-scroll.is-revealed{opacity:1;transform:translateY(0);transition:opacity .85s ease var(--reveal-delay,0ms),transform .85s cubic-bezier(.2,.7,.24,1) var(--reveal-delay,0ms)}
+}
+@media(max-width:900px){.page-hero .scene-photo{animation:wl-landscape-float 45s ease-in-out infinite alternate}.page-hero .scene-overlay-art{opacity:.27}}
+@media(max-width:640px){.page-hero .scene-photo{background-position:64% center}.page-hero .scene-overlay-art{height:80%;opacity:.18}.market-slice:hover,.line-column:hover{transform:none}.intro-aura img{width:125vw}}
+@media(prefers-reduced-motion:reduce){
+.page-hero .scene-photo,.page-hero .scene-overlay-art,.home-hero-fog,.market-overlay,.intro-aura-back,.intro-aura-front{animation:none!important}
+.reveal-scroll{opacity:1!important;transform:none!important}
+}
+/* Contact page: an editorial inquiry workspace, not dashboard-style boxes. */
+.contact-layout{display:grid;grid-template-columns:minmax(260px,.72fr) minmax(420px,1.28fr);gap:clamp(30px,6vw,100px);align-items:start;padding-top:15px}
+.contact-aside h2{font-size:clamp(36px,4vw,62px);margin:15px 0 20px}
+.contact-aside p{line-height:1.85;font-size:16px}
+.contact-topics{margin-top:45px}
+.contact-topic{border-top:1px solid var(--line);padding:18px 0}
+.contact-topic b{display:block;font-size:13px;font-weight:500;color:#f3dbb2;letter-spacing:.08em;margin-bottom:6px}
+.contact-topic span{font-size:14px;line-height:1.55;color:#bfcfdc}
+.contact-panel{background:linear-gradient(140deg,rgba(9,28,43,.91),rgba(5,18,31,.9));border:1px solid rgba(196,226,242,.2);padding:clamp(23px,3.4vw,48px);box-shadow:0 20px 70px rgba(0,8,18,.3)}
+.contact-panel-head{margin-bottom:28px}
+.contact-panel-head .kicker{font-size:11px}
+.contact-panel-head h2{font-size:clamp(32px,3vw,44px);margin:12px 0}
+.contact-panel-head p{font-size:14px}
+.contact-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}
+.form-field{display:flex;flex-direction:column;gap:9px;min-width:0}
+.form-field.wide{grid-column:1 / -1}
+.form-field label,.form-field legend{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#e5d4b8}
+.form-field label span{color:#e4b16a}
+.form-field input,.form-field select,.form-field textarea{width:100%;background:rgba(2,13,25,.75);color:#f4f7fa;border:1px solid rgba(188,220,239,.24);border-radius:3px;padding:14px 13px;min-height:50px;outline:none;font:15px/1.5 Arial,Helvetica,sans-serif;transition:border-color .2s ease,background .2s ease}
+.form-field textarea{min-height:145px;resize:vertical}
+.form-field input::placeholder,.form-field textarea::placeholder{color:#849caf}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:#d9b57e;background:#071e31}
+.form-field option{background:#061a2b}
+.contact-disclosure{font-size:13px;line-height:1.65;color:#b8cedd}
+.contact-disclosure input{accent-color:#e7bc78;width:16px;height:16px;vertical-align:middle;margin-right:9px}
+.form-submit{cursor:pointer;max-width:max-content}
+.form-submit:disabled{opacity:.52;cursor:not-allowed;box-shadow:none}
+.form-status{font-size:14px;line-height:1.65;margin-top:10px;min-height:26px}
+.form-status[data-status="error"],.form-status[data-status="offline"]{color:#ffd5bd}
+.form-status[data-status="success"]{color:#aee5ce}
+.form-note{font-size:12px;line-height:1.7;color:#9fb3c2;margin-top:15px}
+.form-honeypot{position:absolute!important;left:-10000px!important;opacity:0!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.meeting-options[hidden],.form-success[hidden]{display:none!important}
+.form-success{padding:30px 0}
+.form-success h3{font-size:40px;margin-bottom:15px}
+.form-success p{font-size:16px;line-height:1.75}
+@media(max-width:980px){.contact-layout{grid-template-columns:1fr}.contact-topics{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.contact-topic{border-top:1px solid var(--line)}}
+@media(max-width:640px){.contact-form-grid,.contact-topics{grid-template-columns:1fr}.contact-panel{padding:24px 18px}.form-submit{max-width:100%;width:100%}}
