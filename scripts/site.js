@@ -47,7 +47,7 @@ const hide=(focusAfter=false)=>{
  document.body.classList.remove('intro-active');
  try{sessionStorage.setItem('wl_intro_seen','1')}catch(e){}
  if(focusAfter)document.querySelector('.hero-actions a')?.focus({preventScroll:true});
- window.setTimeout(()=>{intro.hidden=true},1120);
+ window.setTimeout(()=>{intro.hidden=true},1000);
 };
 if(noIntro||reduce.matches||(seen&&!replay)){
  intro.hidden=true;
@@ -56,7 +56,8 @@ if(noIntro||reduce.matches||(seen&&!replay)){
 }else{
  document.body.classList.add('intro-active');
  intro.focus({preventScroll:true});
- timer=window.setTimeout(()=>hide(false),10000);
+ // 9s content animation + 1s dismissal = 10s from initial display.
+  timer=window.setTimeout(()=>hide(false),9000);
  document.getElementById('intro-skip')?.addEventListener('click',()=>hide(true));
  intro.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();hide(true)}});
 }
