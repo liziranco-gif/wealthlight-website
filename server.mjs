@@ -92,7 +92,7 @@ async function serve(req,res,pathname){
  if(!allowed||relative.split('/').some(t=>t.startsWith('.'))||relative.includes('..')){res.writeHead(404);res.end('Not found');return}
  const full=path.resolve(root,relative);if(!full.startsWith(root+path.sep)){res.writeHead(403);res.end('Forbidden');return}
  const ext=path.extname(full).toLowerCase();if(!mime[ext]){res.writeHead(404);res.end('Not found');return}
- try{const data=await fs.readFile(full);res.writeHead(200,{'Content-Type':mime[ext],'Cache-Control':ext==='.html'?'no-cache, max-age=0':'public, max-age=120','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY'});res.end(req.method==='HEAD'?undefined:data)}
+ try{const data=await fs.readFile(full);res.writeHead(200,{'Content-Type':mime[ext],'Cache-Control':(ext==='.html'||ext==='.css')?'no-cache, max-age=0':'public, max-age=120','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY'});res.end(req.method==='HEAD'?undefined:data)}
  catch{res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found')}
 }
 const server=http.createServer(async(req,res)=>{
