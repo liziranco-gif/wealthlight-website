@@ -1,4 +1,4 @@
-name: WealthLight Static QA
+name: WealthLight Site QA
 on:
   push:
     branches: [main]
@@ -11,5 +11,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --check scripts/site.js
-      - run: node scripts/check-site.mjs
+      - name: Check JavaScript syntax
+        run: |
+          node --check scripts/site.js
+          node --check scripts/contact.js
+          node --check server.mjs
+      - name: Verify local pages and image references
+        run: node scripts/check-site.mjs
+      - name: Test real HTTP responses and the contact endpoint
+        run: node scripts/smoke-test.mjs
