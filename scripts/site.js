@@ -28,22 +28,8 @@ if('IntersectionObserver' in window && allMotion()){
   observer.observe(el);
  });
 }
-if(allMotion() && window.innerWidth>900){
- const scenes=[...document.querySelectorAll('.page-hero,.home-hero,.market-stage')];
- let inFrame=false;
- const update=()=>{
-  const h=window.innerHeight;
-  for(const scene of scenes){
-   const r=scene.getBoundingClientRect();
-   if(r.bottom<0||r.top>h)continue;
-   const progress=(h-r.top)/(h+r.height)-.5;
-   scene.style.setProperty('--parallax-shift',Math.round(progress*34)+'px');
-  }
-  inFrame=false;
- };
- window.addEventListener('scroll',()=>{if(!inFrame){inFrame=true;requestAnimationFrame(update)}},{passive:true});
- update();
-}
+// Photo atmospheres use one steady animation timeline; scroll no longer drives abrupt
+// changes to --parallax-shift, which previously caused jerks when scrolling.
 const intro=document.getElementById('intro');
 if(!intro)return;
 const params=new URLSearchParams(location.search);
