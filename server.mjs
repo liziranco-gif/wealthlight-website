@@ -198,7 +198,7 @@ const server=http.createServer(async(req,res)=>{
  secureHeaders(res);
  if(name==='/robots.txt'&&(req.method==='GET'||req.method==='HEAD')){
   res.writeHead(200,{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'});
-  res.end(req.method==='HEAD'?undefined:'User-agent: *\\nDisallow: /\\n');
+  res.end(req.method==='HEAD'?undefined:'User-agent: *\nDisallow: /\n');
   return;
  }
  if(name==='/sitemap.xml'){res.writeHead(404,{'Cache-Control':'no-store'});res.end('Not found');return}
