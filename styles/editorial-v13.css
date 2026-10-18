@@ -255,3 +255,12 @@ body .content-section.section-dark::after{background-image:radial-gradient(circl
 body .content-section.section-soft::after{background-image:radial-gradient(circle at 78% 18%,rgba(221,164,91,.16),transparent 27%),linear-gradient(135deg,#182b38,#071a29 68%)!important;background-color:#071a29!important}
 body .content-section.section-pattern::after{background-image:radial-gradient(circle at 15% 20%,rgba(65,148,188,.16),transparent 26%),radial-gradient(circle at 88% 78%,rgba(215,163,89,.12),transparent 25%),linear-gradient(135deg,#0b2639,#061724 68%)!important;background-color:#061724!important}
 body .content-section:not(.section-dark):not(.section-soft):not(.section-pattern)::after{background-image:radial-gradient(circle at 82% 25%,rgba(37,112,149,.15),transparent 30%),linear-gradient(135deg,#0b2235,#061724 72%)!important;background-color:#061724!important}
+/* Highest-specificity homepage cleanup: remove legacy image backgrounds from the actual sections too. */
+html body.home main .content-section{background-image:none!important;background-color:#061724!important}
+html body.home main .content-section.section-dark{background:radial-gradient(circle at 86% 18%,rgba(54,139,176,.2),transparent 30%),linear-gradient(135deg,#071f34,#031522 70%)!important}
+html body.home main .content-section.section-soft{background:radial-gradient(circle at 78% 18%,rgba(221,164,91,.16),transparent 27%),linear-gradient(135deg,#182b38,#071a29 68%)!important}
+html body.home main .content-section.section-pattern{background:radial-gradient(circle at 15% 20%,rgba(65,148,188,.16),transparent 26%),radial-gradient(circle at 88% 78%,rgba(215,163,89,.12),transparent 25%),linear-gradient(135deg,#0b2639,#061724 68%)!important}
+html body.home main .content-section::after{background-image:none!important;background-color:transparent!important}
+html body.home main .content-section.section-dark::after{background-image:radial-gradient(circle at 86% 18%,rgba(54,139,176,.2),transparent 30%),linear-gradient(135deg,#071f34,#031522 70%)!important}
+html body.home main .content-section.section-soft::after{background-image:radial-gradient(circle at 78% 18%,rgba(221,164,91,.16),transparent 27%),linear-gradient(135deg,#182b38,#071a29 68%)!important}
+html body.home main .content-section.section-pattern::after{background-image:radial-gradient(circle at 15% 20%,rgba(65,148,188,.16),transparent 26%),radial-gradient(circle at 88% 78%,rgba(215,163,89,.12),transparent 25%),linear-gradient(135deg,#0b2639,#061724 68%)!important}
