@@ -33,6 +33,8 @@ try{
  const contactHTML=await (await fetch(base+'/contact.html')).text();
  assert.ok(contactHTML.includes('wealthlight-contact-form'),'Contact page missing real form');
  assert.ok(contactHTML.includes('action="https://formsubmit.co/hr@wealthlight.net"'),'Contact must forward directly to the official WealthLight inbox');
+ assert.ok(contactHTML.includes('name="_captcha" value="false"'),'Contact should not redirect users to FormSubmit reCAPTCHA page');
+ assert.ok(contactHTML.includes('name="_honey"'),'Keep spam honeypot on contact form');
  assert.ok(!/<button[^>]+id="wl-form-submit"[^>]+disabled/.test(contactHTML),'Public contact submission must be enabled');
  const contactJS=await (await fetch(base+'/scripts/contact.js')).text();
  assert.ok(!contactJS.includes('/api/contact/status'),'Contact page must not depend on Resend API configuration');
