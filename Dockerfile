@@ -1,3 +1,6 @@
-FROM nginx:1.27-alpine
-COPY . /usr/share/nginx/html
-EXPOSE 80
+FROM node:22-alpine
+WORKDIR /app
+COPY . .
+ENV NODE_ENV=production
+EXPOSE 3000
+CMD ["node","server.mjs"]
