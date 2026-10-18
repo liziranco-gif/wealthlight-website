@@ -183,3 +183,34 @@ body[data-page="markets"] .closing{background-image:linear-gradient(90deg,rgba(4
 body[data-page="about"] .closing,body[data-page="institutional-services"] .closing{background-image:linear-gradient(90deg,rgba(4,19,32,.75),rgba(4,19,32,.36)),url('/assets/about-mountains.jpg?v=2')!important}
 /* Avoid repeating the Markets hero scene immediately below the fold. */
 body[data-page="markets"] .market-stage .market-stage-photo{background-image:linear-gradient(180deg,rgba(4,17,29,.2),rgba(4,17,29,.5)),url('/assets/markets-light-trails.png?v=1')!important;background-size:cover,cover!important;background-position:center,center!important}
+/* v13.4 information hierarchy: one page title, compact section titles, clear company modules. */
+.content-section .section-heading h2,.market-stage-heading h2{font-size:clamp(34px,3.35vw,58px)!important;line-height:1.08!important;letter-spacing:-.035em!important;margin:14px 0 16px!important;max-width:760px!important}
+.content-section .section-heading{max-width:900px;margin-bottom:36px!important}
+.content-section .section-heading .eyebrow,.market-stage-heading .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.18em;color:#efbd78}
+.content-section .section-heading .eyebrow::before,.market-stage-heading .eyebrow::before{content:'';width:36px;height:1px;background:#efbd78;display:inline-block}
+.content-section .section-heading>p:not(.eyebrow){max-width:690px;font-size:15px;line-height:1.7;color:#c6d2db}
+.content-section{border-top:1px solid rgba(195,216,230,.09)!important;border-bottom:1px solid rgba(195,216,230,.06)!important}
+.three-col{gap:14px!important}
+.line-column{background:linear-gradient(145deg,rgba(18,46,65,.5),rgba(3,17,29,.28));border:1px solid rgba(185,213,230,.14)!important;border-left:1px solid rgba(185,213,230,.14)!important;border-radius:2px;padding:26px 25px 30px!important;min-height:190px}
+.line-column:first-child{padding-left:25px!important}
+.line-column h3{font-size:clamp(23px,2vw,34px)!important;line-height:1.12;margin:15px 0 12px!important}
+.line-column p{font-size:14px;line-height:1.65;color:#c5d1da}
+.line-column .kicker{color:#efbd78;font-size:9px;letter-spacing:.16em}
+.service-lines{gap:14px!important}
+.service-lines>div{background:linear-gradient(145deg,rgba(18,46,65,.5),rgba(3,17,29,.28));border:1px solid rgba(185,213,230,.14)!important;border-left:1px solid rgba(185,213,230,.14)!important;border-radius:2px;padding:26px 28px 30px!important}
+.service-lines>div:first-child{padding-left:28px!important}
+.service-lines h3{font-size:clamp(24px,2.2vw,38px)!important;line-height:1.12;margin:15px 0 12px!important}
+.service-lines p{font-size:14px;line-height:1.65;color:#c5d1da}
+.research-links{background:rgba(6,24,39,.35);border:1px solid rgba(185,213,230,.14);padding:0 20px}
+.research-links>a,.research-links>div{font-size:20px!important;padding:20px 3px!important}
+.market-stage-heading h2{max-width:420px!important}
+.market-slice{background:linear-gradient(145deg,rgba(18,46,65,.68),rgba(3,17,29,.42))!important}
+.hero-pillars img,.market-slice>img{background:radial-gradient(circle at 50% 42%,rgba(30,86,116,.8),rgba(4,24,39,.95));border:1px solid rgba(117,207,240,.58);border-radius:50%;padding:8px;filter:brightness(1.22) saturate(1.12) drop-shadow(0 0 12px rgba(89,194,232,.25))!important;box-sizing:border-box}
+.hero-pillars article{align-items:flex-start}
+.hero-pillars h3{font-size:20px!important;line-height:1.1;margin:5px 0 5px!important}
+.hero-pillars p{font-size:12px;line-height:1.5}
+.market-slice>img{height:66px!important;width:66px!important;margin-bottom:16px!important}
+.market-slice h3{font-size:clamp(19px,1.5vw,27px)!important}
+.page-hero h1{font-size:clamp(52px,6.2vw,86px)!important;line-height:1.02!important}
+.closing h2{font-size:clamp(42px,4.3vw,70px)!important}
+@media(max-width:640px){.content-section .section-heading h2,.market-stage-heading h2{font-size:36px!important}.line-column{min-height:0}.service-lines>div{padding:22px!important}.research-links{padding:0 13px}.page-hero h1{font-size:52px!important}}
