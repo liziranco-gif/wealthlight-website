@@ -154,3 +154,134 @@ body[data-page="technology"] .page-hero .scene-overlay-art{opacity:.52!important
  .market-stage .market-stage-photo,.market-stage .market-overlay,
  .content-section::before,.closing::before{animation:none!important;transform:none!important;will-change:auto!important}
 }
+
+/* WealthLight | Motion refinement V9 — deliberately quiet, image-based movement.
+   The original PNG assets and original logo remain intact.
+   This block overrides legacy scaling / rotation keyframes, not the images. */
+.intro{
+  background:#041421!important;
+  transition:opacity .95s cubic-bezier(.32,0,.28,1),visibility .95s!important;
+}
+.intro .intro-brand{
+  z-index:5!important;
+  background:none!important;
+  box-shadow:none!important;
+  padding:0!important;
+  width:min(68vw,540px)!important;
+  border-radius:0!important;
+  transform:none!important;
+  animation:wl-v9-brand-still 10s ease-in-out both!important;
+}
+.intro .intro-brand img{
+  filter:drop-shadow(0 1px 15px rgba(173,208,228,.12))!important;
+}
+.intro .intro-aura img{
+  width:min(81vw,1050px)!important;
+  filter:brightness(.65) saturate(.66)!important;
+  transform:translateZ(0)!important;
+}
+.intro .intro-aura-back{
+  animation:wl-v9-aura-back 10s ease-in-out both!important;
+}
+.intro .intro-aura-front{
+  animation:wl-v9-aura-front 10s ease-in-out both!important;
+}
+.intro .intro-scene{
+  animation:wl-v9-scene-reveal 10s ease-in-out both!important;
+}
+.intro .intro-scene-photo{
+  filter:brightness(.74) saturate(.87)!important;
+  animation:wl-v9-scene-settle 10s ease-out both!important;
+}
+.intro .intro-scene-fog{
+  opacity:.13!important;mix-blend-mode:screen;
+  animation:wl-v9-fog-intro 10s ease-in-out both!important;
+}
+.intro .intro-caption{
+  animation:wl-v9-caption 10s ease-in-out both!important;
+  color:#c7bbad!important;
+  letter-spacing:.20em!important;
+  font-size:10px!important;
+}
+.intro .intro-progress{width:min(260px,48vw)!important;background:rgba(215,224,230,.12)!important}
+.intro .intro-progress i{background:linear-gradient(90deg,#7691a4,#c9b18a)!important;opacity:.6}
+.intro .intro-skip{color:#bfd0db!important;transition:color .2s ease!important}
+.intro .intro-skip:hover{color:#f2d3a2!important}
+@keyframes wl-v9-brand-still{
+  0%,6%{opacity:0;transform:translateY(4px)}
+  22%,71%{opacity:1;transform:translateY(0)}
+  87%,100%{opacity:0;transform:translateY(0)}
+}
+@keyframes wl-v9-aura-back{
+  0%,25%{opacity:0;transform:scale(.99)}
+  40%,68%{opacity:.105;transform:scale(1)}
+  84%,100%{opacity:0;transform:scale(1.012)}
+}
+@keyframes wl-v9-aura-front{
+  0%,32%{opacity:0;transform:scale(.995)}
+  47%,67%{opacity:.14;transform:scale(1)}
+  83%,100%{opacity:0;transform:scale(1.008)}
+}
+@keyframes wl-v9-caption{
+  0%,30%{opacity:0}
+  42%,70%{opacity:.62}
+  82%,100%{opacity:0}
+}
+@keyframes wl-v9-scene-reveal{
+  0%,58%{opacity:0}
+  75%{opacity:.34}
+  91%,100%{opacity:1}
+}
+@keyframes wl-v9-scene-settle{
+  0%,58%{transform:scale(1.018)}
+  100%{transform:scale(1.004)}
+}
+@keyframes wl-v9-fog-intro{
+  0%,61%{opacity:0;transform:translate3d(0,6px,0)}
+  85%,100%{opacity:.14;transform:translate3d(5px,0,0)}
+}
+/* Gradual parallax without repeated "breathing" zoom or bright flicker. */
+.home-hero .home-hero-photo,
+.page-hero .scene-photo,
+.market-stage .market-stage-photo{
+  animation:wl-v9-landscape 48s ease-in-out infinite alternate!important;
+  will-change:transform;
+}
+.home-hero .home-hero-fog,
+.market-stage .market-overlay,
+.page-hero .scene-overlay-art{
+  animation:wl-v9-atmosphere 33s ease-in-out infinite alternate!important;
+  will-change:transform,opacity;
+}
+.page-hero .scene-overlay-art{opacity:.18!important}
+.content-section::before{animation:wl-v9-atmosphere 42s ease-in-out infinite alternate!important;opacity:.075!important}
+.closing::before{animation:wl-v9-atmosphere 45s ease-in-out infinite alternate!important;opacity:.13!important}
+@keyframes wl-v9-landscape{
+  from{transform:translate3d(-5px,0,0) scale(1.045)}
+  to{transform:translate3d(7px,-2px,0) scale(1.049)}
+}
+@keyframes wl-v9-atmosphere{
+  0%{transform:translate3d(-9px,2px,0) scale(1.015);opacity:.13}
+  50%{opacity:.18}
+  100%{transform:translate3d(11px,-4px,0) scale(1.018);opacity:.14}
+}
+.reveal-scroll:not(.is-revealed){transform:translateY(9px)!important}
+.reveal-scroll.is-revealed{
+  transition:opacity .63s ease var(--reveal-delay,0ms),transform .63s ease var(--reveal-delay,0ms)!important;
+}
+.market-slice:hover,.line-column:hover,.step:hover,.research-links>a:hover{transform:translateY(-2px)!important}
+@media(max-width:640px){
+  .intro .intro-brand{width:min(82vw,440px)!important}
+  .intro .intro-aura img{width:114vw!important}
+  .intro .intro-caption{font-size:9px!important;letter-spacing:.13em!important}
+  .page-hero .scene-overlay-art{opacity:.12!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .intro{display:none!important}
+  .home-hero .home-hero-photo,.home-hero .home-hero-fog,
+  .page-hero .scene-photo,.page-hero .scene-overlay-art,
+  .market-stage .market-stage-photo,.market-stage .market-overlay,
+  .content-section::before,.closing::before{
+    animation:none!important;transform:none!important;will-change:auto!important;
+  }
+}
