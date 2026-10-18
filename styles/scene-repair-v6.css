@@ -1,0 +1,137 @@
+/* WealthLight / Visual Scene Repair V6
+   Photographic JPG and transparent PNG layers only.
+   No mountains, grid paths or particle drawings generated in CSS.
+*/
+:root{--wl-scene-depth:1.065;--wl-soft-light:rgba(110,185,233,.18)}
+.page-hero,.home-hero,.market-stage{background:#061624;position:relative;isolation:isolate;overflow:hidden}
+.page-hero .scene-photo{
+  position:absolute!important;inset:-2.5%!important;z-index:0!important;
+  display:block!important;opacity:1!important;
+  background-color:#071a2b;background-size:cover!important;background-repeat:no-repeat!important;
+  background-position:center 53%;
+  transform:translate3d(0,var(--parallax-shift,0px),0) scale(1.065);
+  animation:wl-v6-mountain 18s ease-in-out infinite alternate!important;
+  will-change:transform;
+}
+.page-hero .scene-overlay-art{
+  position:absolute!important;inset:0!important;
+  display:block!important;width:102%!important;height:99%!important;
+  left:-1%!important;z-index:1!important;object-fit:cover!important;
+  object-position:center 56%;mix-blend-mode:screen;
+  opacity:.52!important;filter:none!important;
+  animation:wl-v6-trails 15s ease-in-out infinite alternate!important;
+  will-change:transform,opacity;
+}
+.page-hero .scene-darken{
+  position:absolute!important;inset:0!important;z-index:2!important;pointer-events:none;
+  background:linear-gradient(90deg,rgba(2,14,26,.86) 0%,rgba(3,17,30,.53) 46%,rgba(3,18,32,.12) 100%),
+  linear-gradient(180deg,rgba(2,11,20,.28),transparent 45%,rgba(2,14,26,.56))!important;
+}
+.page-hero::after{z-index:3!important;opacity:.5;pointer-events:none}
+.page-hero .page-hero-copy{position:relative!important;z-index:4!important}
+.page-hero .page-hero-copy h1,.page-hero .page-hero-copy .lead{text-shadow:0 3px 18px rgba(0,6,15,.9)}
+.page-hero.scene-about .scene-photo{background-image:url('/assets/about-mountains.jpg')!important;background-position:60% 45%!important}
+.page-hero.scene-markets .scene-photo{background-image:url('/assets/markets-mountains.jpg')!important;background-position:55% 50%!important}
+.page-hero.scene-research .scene-photo,.page-hero.scene-approach .scene-photo{background-image:url('/assets/research-mountains.jpg')!important;background-position:50% 56%!important}
+.page-hero.scene-risk .scene-photo{background-image:url('/assets/hero-mountains.jpg')!important;filter:saturate(.86) brightness(.83)!important;background-position:69% 55%!important}
+.page-hero.scene-perspective .scene-photo{background-image:url('/assets/markets-mountains.jpg')!important;background-position:67% 44%!important}
+body[data-page="technology"] .page-hero .scene-photo{background-image:url('/assets/research-mountains.jpg')!important;background-position:78% 58%!important}
+body[data-page="strategies"] .page-hero .scene-photo{background-image:url('/assets/markets-mountains.jpg')!important;background-position:55% 54%!important}
+body[data-page="institutional-services"] .page-hero .scene-photo{background-image:url('/assets/hero-mountains.jpg')!important;background-position:73% 52%!important}
+body[data-page="contact"] .page-hero .scene-photo{background-image:url('/assets/about-mountains.jpg')!important;background-position:62% 60%!important}
+body[data-page="risk-management"] .page-hero .scene-overlay-art{opacity:.28!important}
+body[data-page="institutional-services"] .page-hero .scene-overlay-art{opacity:.4!important}
+body[data-page="technology"] .page-hero .scene-overlay-art{opacity:.68!important}
+
+.home-hero .home-hero-photo{z-index:0!important;inset:-2%!important;animation:wl-v6-mountain 19s ease-in-out infinite alternate!important}
+.home-hero .home-hero-fog{z-index:1!important;opacity:.3;animation:wl-v6-fog 20s ease-in-out infinite alternate!important;will-change:transform,opacity}
+.home-hero .home-hero-shade{z-index:2!important}
+.home-hero .hero-inner,.home-hero .hero-pillars{position:relative;z-index:3!important}
+.market-stage .market-stage-photo{z-index:0!important;animation:wl-v6-mountain 19s ease-in-out infinite alternate!important}
+.market-stage .market-overlay{z-index:1!important;opacity:.48!important;animation:wl-v6-trails 18s ease-in-out infinite alternate!important}
+.market-stage::after{z-index:2!important}
+.market-stage .shell{position:relative;z-index:3!important}
+
+/* Every editorial section has a visible, gentle real-photo atmosphere.
+   The transparent overlay is darker behind the copy, lighter outside it. */
+body[data-page="home"]{--wl-section-photo:url('/assets/research-mountains.jpg')}
+body[data-page="about"]{--wl-section-photo:url('/assets/about-mountains.jpg')}
+body[data-page="markets"]{--wl-section-photo:url('/assets/markets-mountains.jpg')}
+body[data-page="research-&-insights"]{--wl-section-photo:url('/assets/research-mountains.jpg')}
+body[data-page="risk-management"]{--wl-section-photo:url('/assets/hero-mountains.jpg')}
+body[data-page="technology"]{--wl-section-photo:url('/assets/research-mountains.jpg')}
+body[data-page="institutional-services"]{--wl-section-photo:url('/assets/about-mountains.jpg')}
+body[data-page="strategies"]{--wl-section-photo:url('/assets/markets-mountains.jpg')}
+body[data-page="capabilities"]{--wl-section-photo:url('/assets/research-mountains.jpg')}
+body[data-page="perspective"]{--wl-section-photo:url('/assets/markets-mountains.jpg')}
+body[data-page="contact"]{--wl-section-photo:url('/assets/about-mountains.jpg')}
+body[data-page="how-we-think"],body[data-page="approach"]{--wl-section-photo:url('/assets/research-mountains.jpg')}
+body{--wl-section-photo:url('/assets/about-mountains.jpg')}
+.content-section{
+  position:relative!important;isolation:isolate!important;overflow:hidden;
+  background:#061624!important;
+}
+.content-section::before{
+  content:"";position:absolute;inset:-3.5%;z-index:0!important;
+  background-image:var(--wl-section-photo);background-position:center 56%;background-size:cover;background-repeat:no-repeat;
+  opacity:.66;transform:scale(1.05);
+  animation:wl-v6-content-photo 24s ease-in-out infinite alternate;
+  will-change:transform;
+  pointer-events:none;
+}
+.content-section:nth-of-type(3n)::before{background-position:70% 58%;opacity:.57}
+.content-section.section-dark::before{opacity:.52}
+.content-section.section-soft::before{opacity:.69}
+.content-section.section-pattern::before{opacity:.63}
+.content-section::after{
+  content:"";position:absolute;inset:0;z-index:1!important;pointer-events:none;
+  background:linear-gradient(90deg,rgba(2,13,25,.82),rgba(3,16,28,.62) 57%,rgba(3,15,26,.39)),
+             linear-gradient(180deg,rgba(2,13,25,.3),transparent 43%,rgba(2,13,25,.58));
+}
+.content-section>.shell{position:relative!important;z-index:2!important}
+.content-section .section-heading h2{filter:drop-shadow(0 3px 13px rgba(0,8,15,.6))}
+.content-section p,.content-section .line-column p{color:#d8e4eb;text-shadow:0 1px 10px rgba(0,8,15,.48)}
+.closing{position:relative;isolation:isolate;overflow:hidden;background:#061624!important}
+.closing::before{
+  content:"";position:absolute;inset:-3%;z-index:0;
+  background:var(--wl-section-photo) center 57%/cover no-repeat;
+  opacity:.54;animation:wl-v6-content-photo 27s ease-in-out infinite alternate;
+}
+.closing::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(3,14,27,.88),rgba(3,16,29,.51)),linear-gradient(0deg,rgba(3,14,26,.53),transparent)}
+.closing .shell{position:relative;z-index:2}
+
+/* Real-image movement is deliberately smooth rather than flashy. */
+@keyframes wl-v6-mountain{
+  0%{transform:translate3d(-8px,var(--parallax-shift,0px),0) scale(1.072)}
+  100%{transform:translate3d(18px,var(--parallax-shift,0px),0) scale(1.098)}
+}
+@keyframes wl-v6-trails{
+  0%{transform:translate3d(-18px,9px,0) scale(1.035);opacity:.34}
+  50%{opacity:.66}
+  100%{transform:translate3d(18px,-11px,0) scale(1.065);opacity:.4}
+}
+@keyframes wl-v6-fog{
+  0%{transform:translate3d(-30px,8px,0) scale(1.05);opacity:.2}
+  100%{transform:translate3d(30px,-14px,0) scale(1.08);opacity:.43}
+}
+@keyframes wl-v6-content-photo{
+  from{transform:translate3d(-10px,0,0) scale(1.065)}
+  to{transform:translate3d(20px,-6px,0) scale(1.085)}
+}
+@media(max-width:900px){
+ .page-hero .scene-photo{animation-duration:22s!important}
+ .page-hero .scene-overlay-art{opacity:.42!important}
+ .content-section::before{opacity:.55}
+}
+@media(max-width:640px){
+ .page-hero .scene-overlay-art{opacity:.36!important}
+ .content-section::after{background:linear-gradient(90deg,rgba(3,13,24,.86),rgba(4,17,30,.7)),linear-gradient(180deg,transparent,rgba(3,13,24,.44))}
+ .content-section::before{opacity:.45}
+ .closing::before{opacity:.42}
+}
+@media(prefers-reduced-motion:reduce){
+ .page-hero .scene-photo,.page-hero .scene-overlay-art,
+ .home-hero .home-hero-photo,.home-hero .home-hero-fog,
+ .market-stage .market-stage-photo,.market-stage .market-overlay,
+ .content-section::before,.closing::before{animation:none!important;will-change:auto!important;transform:none!important}
+}
