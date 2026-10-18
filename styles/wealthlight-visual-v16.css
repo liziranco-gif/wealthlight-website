@@ -1,0 +1,197 @@
+/* WEALTHLIGHT — cohesive image-first visual system V16
+   All landscapes and finance motifs are existing real JPG/PNG image assets.
+   CSS ONLY composes those prepared images and preserves text legibility.
+   No browser-drawn mountains, stock charts, particles or synthetic light curves. */
+
+:root{--wl-midnight:#061624;--wl-panel:#081c2b;--wl-text:#f2f5f7;--wl-soft:#b9cddc;--wl-bronze:#e7bd7c}
+html{background:var(--wl-midnight)}
+body{background:var(--wl-midnight);color:var(--wl-text)}
+
+/* Scheme A: ONE standalone mark, readable Chinese name, independent subtitle. */
+.site-header a.brand.brand-lockup{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ justify-content:center!important;gap:3px!important;flex-shrink:0;
+ width:max-content;min-width:185px;max-width:260px;
+ text-decoration:none!important;letter-spacing:normal!important;white-space:normal!important
+}
+.brand-lockup .brand-top{display:flex;align-items:center;gap:10px;min-height:33px}
+.brand-lockup .brand-mark{display:block;width:40px!important;height:32px!important;object-fit:contain!important;
+ flex-shrink:0;filter:brightness(0) saturate(100%) invert(84%) sepia(20%) saturate(631%) hue-rotate(348deg) brightness(105%)!important;
+ background:none!important;border-radius:0!important;padding:0!important}
+.brand-lockup .brand-title{
+ display:block;color:#f9f8f5;font-family:Georgia,"Noto Serif SC","Songti SC","SimSun",serif;
+ font-size:23px;line-height:1.1;font-weight:500;letter-spacing:.07em;white-space:nowrap
+}
+.brand-lockup .brand-tagline{display:block;color:#b8c9d6;font:11px/1.45 "PingFang SC","Microsoft YaHei",sans-serif;
+ letter-spacing:.065em;padding-left:50px}
+.site-header{align-items:center!important}
+.site-header .site-nav{margin-left:auto}
+
+/* Footer: remove embedded English lockup image and duplicate text. */
+.site-footer .footer-brand{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:7px!important;
+ min-width:200px;padding:0!important;background:none!important
+}
+.site-footer .footer-brand .brand-top{display:flex;align-items:center;gap:13px;min-height:48px}
+.site-footer .footer-brand .brand-mark{
+ width:50px!important;height:46px!important;object-fit:contain;filter:brightness(0) saturate(100%) invert(84%) sepia(20%) saturate(631%) hue-rotate(348deg) brightness(105%)!important;
+ padding:0!important;background:none!important;border-radius:0!important
+}
+.site-footer .footer-brand .brand-title{display:block!important;font-size:26px!important;color:#fbf7ef!important}
+.site-footer .footer-brand .brand-tagline{display:block!important;padding-left:63px!important;margin:0!important;
+ color:#b7c8d6!important;font-size:12px!important;line-height:1.5}
+
+/* Hero photographs: one image plane per page, never a pasted extra mountain on top. */
+html body .home-hero .home-hero-photo,
+html body .page-hero .scene-photo,
+html body .market-stage .market-stage-photo{
+ background-color:#061624!important;background-repeat:no-repeat!important;
+ background-size:cover!important;filter:none!important;opacity:1!important;
+ transform:none!important;animation:none!important;will-change:auto!important
+}
+html body.home .home-hero .home-hero-photo{
+ background-image:url('/assets/market-landscape-v13.jpg')!important;background-position:58% 51%!important
+}
+html body.home .market-stage .market-stage-photo,
+html body[data-page="markets"] .market-stage .market-stage-photo{
+ background-image:url('/assets/markets-mountains.jpg')!important;background-position:center 57%!important
+}
+html body[data-page="about"] .page-hero .scene-photo{
+ background-image:url('/assets/hero-mountains.jpg')!important;background-position:57% 49%!important
+}
+html body[data-page="capabilities"] .page-hero .scene-photo{
+ background-image:url('/assets/research-mountains.jpg')!important;background-position:56% 52%!important
+}
+html body[data-page="markets"] .page-hero .scene-photo{
+ background-image:url('/assets/markets-mountains.jpg')!important;background-position:52% 57%!important
+}
+html body[data-page="strategies"] .page-hero .scene-photo{
+ background-image:url('/assets/market-landscape-v13.jpg')!important;background-position:64% 52%!important
+}
+html body[data-page="research-&-insights"] .page-hero .scene-photo{
+ background-image:url('/assets/research-mountains.jpg')!important;background-position:51% 56%!important
+}
+html body[data-page="risk-management"] .page-hero .scene-photo{
+ background-image:url('/assets/hero-mountains.jpg')!important;background-position:72% 52%!important
+}
+html body[data-page="how-we-think"] .page-hero .scene-photo{
+ background-image:url('/assets/market-landscape-v13.jpg')!important;background-position:72% 52%!important
+}
+html body[data-page="perspective"] .page-hero .scene-photo{
+ background-image:url('/assets/markets-mountains.jpg')!important;background-position:51% 56%!important
+}
+html body[data-page="technology"] .page-hero .scene-photo{
+ background-image:url('/assets/research-mountains.jpg')!important;background-position:64% 56%!important
+}
+html body[data-page="institutional-services"] .page-hero .scene-photo{
+ background-image:url('/assets/hero-mountains.jpg')!important;background-position:55% 50%!important
+}
+html body[data-page="contact"] .page-hero .scene-photo{
+ background-image:url('/assets/markets-mountains.jpg')!important;background-position:65% 52%!important
+}
+html body[data-page="risk-disclosure"] .page-hero .scene-photo{
+ background-image:url('/assets/hero-mountains.jpg')!important;background-position:70% 50%!important
+}
+html body .page-hero .scene-overlay-art,
+html body .home-hero .home-hero-fog,
+html body .market-stage .market-overlay,
+html body .wl-financial-art{display:none!important}
+
+/* Luminance protection for HTML copy + seamless transition to the next section. */
+html body .home-hero .home-hero-shade{
+ background:linear-gradient(90deg,rgba(3,13,24,.91) 0%,rgba(3,14,25,.64) 32%,rgba(4,17,29,.23) 67%,rgba(4,17,29,.06) 100%),
+ linear-gradient(180deg,rgba(4,15,27,.15),transparent 39%,rgba(6,22,36,.93) 100%)!important;
+ z-index:2!important
+}
+html body .page-hero .scene-darken{
+ background:linear-gradient(90deg,rgba(3,14,26,.88) 0%,rgba(4,16,29,.55) 44%,rgba(3,15,28,.18) 100%),
+ linear-gradient(180deg,rgba(3,13,25,.15),transparent 47%,rgba(6,22,36,.97) 100%)!important;
+ z-index:2!important
+}
+html body .page-hero::after{
+ content:"";position:absolute;inset:auto 0 0;z-index:3!important;height:140px;
+ background:linear-gradient(to bottom,transparent,#061624)!important;opacity:1!important;
+ animation:none!important;pointer-events:none
+}
+html body .home-hero .hero-inner,html body .home-hero .hero-pillars{position:relative;z-index:4!important}
+html body .page-hero .page-hero-copy{position:relative;z-index:4!important}
+html body .page-hero h1,html body .home-hero h1{text-shadow:0 4px 22px rgba(0,10,21,.47)}
+html body .page-hero .lead{color:#d6e4ef!important;text-shadow:0 2px 10px rgba(0,11,22,.5)}
+
+/* Continuous editorial surfaces: never repeat the same full mountain at each panel. */
+html body .content-section,
+html body .content-section.section-dark,
+html body .content-section.section-soft,
+html body .content-section.section-pattern,
+html body.home main > .content-section,
+html body.home main > .content-section.section-dark,
+html body.home main > .content-section.section-pattern,
+html body.home main > .content-section.section-soft,
+html body.home main > .content-section:nth-of-type(n),
+html body.home main > .content-section:nth-of-type(n).section-dark,
+html body.home main > .content-section:nth-of-type(n).section-pattern{
+ background:#061624!important;background-image:none!important;overflow:hidden;isolation:isolate
+}
+html body .content-section::before,
+html body .content-section::after,
+html body.home main > .content-section::before,
+html body.home main > .content-section::after,
+html body.home main > .content-section:nth-of-type(n)::before,
+html body.home main > .content-section:nth-of-type(n)::after{
+ content:"";position:absolute;inset:0;z-index:0!important;pointer-events:none;
+ background-image:none!important;background:transparent!important;opacity:1!important;
+ animation:none!important;transform:none!important
+}
+/* A faint, fully integrated second photograph ONLY in selected editorial chapters. */
+html body.home main > .content-section:nth-of-type(4)::before{
+ display:block!important;background:url('/assets/research-mountains.jpg') center 58%/cover no-repeat!important;
+ opacity:.18!important;mask-image:linear-gradient(to bottom,transparent,#000 26%,#000 69%,transparent)!important
+}
+html body.home main > .content-section:nth-of-type(6)::before{
+ display:block!important;background:url('/assets/hero-mountains.jpg') center 56%/cover no-repeat!important;
+ opacity:.14!important;mask-image:linear-gradient(to bottom,transparent,#000 35%,transparent)!important
+}
+html body .content-section>.shell{position:relative!important;z-index:2!important}
+html body .content-section p{color:#cbdce7}
+html body .content-section h2{color:#f5f7f9}
+html body .market-stage::after{
+ content:"";position:absolute;inset:0;z-index:2;
+ background:linear-gradient(90deg,rgba(3,15,28,.90) 0%,rgba(3,15,28,.64) 42%,rgba(3,15,28,.31)),
+ linear-gradient(180deg,rgba(4,17,28,.36),transparent 48%,rgba(6,22,36,.92))!important;
+ pointer-events:none
+}
+html body .market-stage .shell{z-index:4!important}
+html body .step{background-image:none!important;background-color:transparent!important}
+html body .step::before,html body .step::after{box-shadow:none}
+html body .closing{background:#061624!important;background-image:none!important}
+html body .closing::before{display:none!important}
+html body .closing::after{background:transparent!important}
+
+@media(max-width:1100px){
+ .site-header a.brand.brand-lockup{min-width:170px;max-width:200px}
+ .brand-lockup .brand-mark{width:34px!important;height:29px!important}
+ .brand-lockup .brand-title{font-size:20px}
+ .brand-lockup .brand-tagline{padding-left:44px;font-size:10px}
+}
+@media(max-width:640px){
+ .site-header a.brand.brand-lockup{min-width:146px}
+ .brand-lockup .brand-top{gap:8px}
+ .brand-lockup .brand-mark{width:29px!important;height:27px!important}
+ .brand-lockup .brand-title{font-size:18px;letter-spacing:.04em}
+ .brand-lockup .brand-tagline{padding-left:37px;font-size:10px}
+ .site-footer .footer-brand .brand-mark{width:43px!important;height:40px!important}
+ .site-footer .footer-brand .brand-title{font-size:23px!important}
+ .site-footer .footer-brand .brand-tagline{padding-left:56px!important}
+ html body.home .home-hero .home-hero-photo{background-position:67% 50%!important}
+ html body .page-hero .scene-photo{background-position:65% 50%!important}
+ html body .home-hero .home-hero-shade{background:linear-gradient(90deg,rgba(3,14,26,.88),rgba(3,14,26,.44)),
+ linear-gradient(180deg,rgba(4,16,28,.25),transparent 43%,rgba(6,22,36,.96))!important}
+ html body .page-hero .scene-darken{background:linear-gradient(90deg,rgba(3,14,26,.88),rgba(3,14,26,.48)),
+ linear-gradient(180deg,transparent 32%,rgba(6,22,36,.98))!important}
+ html body .market-stage .market-stage-photo{background-position:58% center!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html body .home-hero .home-hero-photo,
+ html body .page-hero .scene-photo,
+ html body .market-stage .market-stage-photo{animation:none!important;transform:none!important}
+}
