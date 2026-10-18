@@ -141,3 +141,12 @@ body{background:#061522;color:#edf1f4}
 .wl-research-ribbon .wl-ribbon-heading{grid-column:1/-1}
 .wl-research-ribbon .wl-ribbon-cell{padding:0 11px}
 .wl-research-ribbon .wl-ribbon-cell b{font-size:15px}}
+/* v13.1 visual visibility patch: explicit image layers win over legacy overrides. */
+.brand-symbol{filter:brightness(0) invert(1) drop-shadow(0 0 5px rgba(239,189,120,.42))!important;background:rgba(239,189,120,.12);border-radius:50%;padding:3px}
+.home-hero .home-hero-photo,.page-hero .scene-photo,.market-stage .market-stage-photo{background-image:url('/assets/market-landscape-v13.jpg')!important;background-size:cover!important;background-repeat:no-repeat!important;background-position:center 53%!important}
+.home-hero .home-hero-photo{opacity:1!important;visibility:visible!important}
+.page-hero .scene-photo,.market-stage .market-stage-photo{opacity:1!important;visibility:visible!important}
+.content-section::after{background-image:linear-gradient(90deg,rgba(4,17,29,.92),rgba(4,17,29,.74) 55%,rgba(4,17,29,.57)),url('/assets/market-landscape-v13.jpg')!important;background-size:cover,cover!important;background-position:center,center 65%!important}
+.content-section.section-pattern::after{background-image:linear-gradient(90deg,rgba(4,17,29,.91),rgba(4,17,29,.72)),url('/assets/market-landscape-v13.jpg')!important}
+.closing{background-image:linear-gradient(90deg,#041320e8,#041320a8),url('/assets/market-landscape-v13.jpg')!important;background-size:cover,cover!important}
+@media(max-width:640px){.home-hero .home-hero-photo,.page-hero .scene-photo,.market-stage .market-stage-photo{background-position:62% center!important}}
