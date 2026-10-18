@@ -244,3 +244,9 @@ body.home .closing,body[data-page="markets"] .closing,body[data-page="about"] .c
 .hero-pillars article{border-left:1px solid rgba(201,228,244,.25)!important;background:linear-gradient(145deg,rgba(13,40,57,.25),rgba(3,15,28,.12))!important;border-radius:16px!important;margin:0 7px;padding:18px 18px!important}
 .hero-pillars article:first-child{border-left:1px solid rgba(201,228,244,.25)!important}
 @media(max-width:640px){.hero-pillars article,.hero-pillars article:first-child,.hero-pillars article:nth-child(3){border:1px solid rgba(201,228,244,.18)!important;border-radius:16px!important;margin:5px 0;padding:16px!important}.market-slices{border-radius:18px!important}.research-links{padding:0 15px!important}}
+/* Final override: no photographic URLs below a page hero. */
+body .content-section::after{background-image:none!important}
+body .content-section.section-dark::after{background:radial-gradient(circle at 86% 18%,rgba(54,139,176,.2),transparent 30%),linear-gradient(135deg,#071f34,#031522 70%)!important}
+body .content-section.section-soft::after{background:radial-gradient(circle at 78% 18%,rgba(221,164,91,.16),transparent 27%),linear-gradient(135deg,#182b38,#071a29 68%)!important}
+body .content-section.section-pattern::after{background:radial-gradient(circle at 15% 20%,rgba(65,148,188,.16),transparent 26%),radial-gradient(circle at 88% 78%,rgba(215,163,89,.12),transparent 25%),linear-gradient(135deg,#0b2639,#061724 68%)!important}
+body .content-section:not(.section-dark):not(.section-soft):not(.section-pattern)::after{background:radial-gradient(circle at 82% 25%,rgba(37,112,149,.15),transparent 30%),linear-gradient(135deg,#0b2235,#061724 72%)!important}
