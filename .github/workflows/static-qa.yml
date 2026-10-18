@@ -16,7 +16,10 @@ jobs:
           node --check scripts/site.js
           node --check scripts/contact.js
           node --check server.mjs
+          node --check scripts/access-smoke-test.mjs
       - name: Verify local pages and image references
         run: node scripts/check-site.mjs
       - name: Test real HTTP responses and the contact endpoint
-        run: node scripts/smoke-test.mjs
+        run: |
+          node scripts/smoke-test.mjs
+          node scripts/access-smoke-test.mjs
