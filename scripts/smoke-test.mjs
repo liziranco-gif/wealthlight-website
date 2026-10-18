@@ -30,6 +30,16 @@ try{
  assert.ok(homeHTML.includes('wl-research-ribbon'),'Research coverage ribbon must remain visible');
  assert.ok(!homeHTML.includes('wl-financial-art'),'No procedural chart layers may be used');
 
+ const presentation=await(await fetch(base+'/styles/wealthlight-visual-v16.css')).text();
+ assert.ok(presentation.includes('body[data-page="markets"]')&&presentation.includes('/assets/markets-mountains.jpg'),'Independent Markets scene missing');
+ assert.ok(presentation.includes('body[data-page="research-&-insights"]')&&presentation.includes('/assets/research-mountains.jpg'),'Independent Research scene missing');
+ assert.ok(presentation.includes('body[data-page="about"]')&&presentation.includes('/assets/hero-mountains.jpg'),'Independent About scene missing');
+ for(const page of ['index.html','about.html','markets.html','research.html','risk.html','contact.html']){
+  const doc=await(await fetch(base+'/'+page)).text();
+  assert.ok(doc.includes('wealthlight-visual-v16.css'),'Cohesive scene CSS missing from '+page);
+  assert.ok(doc.includes('class="brand brand-lockup"')&&doc.includes('财富之光'),'Brand A missing on '+page);
+  assert.ok(!doc.includes('<div class="footer-brand"><img src="/assets/wealthlight-logo-light.png"'),'Duplicate footer lockup remains on '+page);
+ }
  const contactHTML=await (await fetch(base+'/contact.html')).text();
  assert.ok(contactHTML.includes('wealthlight-contact-form'),'Contact page missing real form');
  assert.ok(contactHTML.includes('action="https://formsubmit.co/ajax/hr@wealthlight.net"'),'Contact must submit to the same-page AJAX endpoint');
