@@ -11,20 +11,20 @@
 .wl-financial-art>img{
  display:block;position:absolute;
  width:100%;height:100%;inset:0;object-fit:cover;
- opacity:.54;mix-blend-mode:screen;
+ opacity:var(--chart-opacity,.54);mix-blend-mode:screen;
  -webkit-mask-image:linear-gradient(90deg,transparent 23%,rgba(0,0,0,.12) 34%,#000 54%,#000 100%);
  mask-image:linear-gradient(90deg,transparent 23%,rgba(0,0,0,.12) 34%,#000 54%,#000 100%);
  animation:wl-chart-reveal 1.9s ease-out .6s both;
 }
 /* Chart stays anchored to the mountain instead of flying or scaling across it. */
-@keyframes wl-chart-reveal{from{opacity:0;transform:translateY(7px)}to{opacity:.54;transform:none}}
-.home-hero .wl-financial-art>img{opacity:.58}
-.page-hero.scene-markets .wl-financial-art>img{opacity:.64}
+@keyframes wl-chart-reveal{from{opacity:0;transform:translateY(7px)}to{opacity:var(--chart-opacity,.54);transform:none}}
+.home-hero .wl-financial-art>img{--chart-opacity:.64}
+.page-hero.scene-markets .wl-financial-art>img{--chart-opacity:.68}
 .page-hero.scene-research .wl-financial-art>img,
-.page-hero.scene-approach .wl-financial-art>img{opacity:.5}
-.page-hero.scene-risk .wl-financial-art>img{opacity:.35}
+.page-hero.scene-approach .wl-financial-art>img{--chart-opacity:.54}
+.page-hero.scene-risk .wl-financial-art>img{--chart-opacity:.37}
 .page-hero.scene-about .wl-financial-art>img,
-body[data-page="contact"] .wl-financial-art>img{opacity:.27}
+body[data-page="contact"] .wl-financial-art>img{--chart-opacity:.27}
 .page-hero .scene-darken{z-index:2!important}
 .page-hero .page-hero-copy{position:relative;z-index:5!important}
 .home-hero .hero-inner,.home-hero .hero-pillars{position:relative;z-index:5!important}
@@ -66,12 +66,12 @@ body[data-page="contact"] .wl-financial-art>img{opacity:.27}
 .wl-study-graphics .content-section>.shell{position:relative;z-index:2}
 @media(max-width:1120px){
  .wl-market-identity{display:none}
- .wl-financial-art>img{opacity:.44}
+ .wl-financial-art>img{--chart-opacity:.42}
 }
 @media(max-width:700px){
  .wl-financial-art>img{
   width:155%;height:86%;inset:7% auto auto -42%;
-  opacity:.3!important;
+  --chart-opacity:.30!important;
   -webkit-mask-image:linear-gradient(90deg,transparent 28%,#000 72%);
   mask-image:linear-gradient(90deg,transparent 28%,#000 72%);
  }
