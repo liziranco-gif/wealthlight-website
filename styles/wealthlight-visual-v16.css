@@ -215,3 +215,82 @@ html body.home main > .market-stage:nth-of-type(n) .market-stage-photo{
 }
 /* Keep headings firmly above scenery on narrow screens, including translated text. */
 .site-header .brand-lockup .brand-title,.site-footer .footer-brand .brand-title{word-break:keep-all}
+
+/* Official WealthLight English branding: never use translated company name.
+   Explicit two-line lockup and footer grid prevent slogan drifting sideways. */
+.site-header a.brand.brand-lockup[translate="no"]{
+ min-width:205px!important;
+ width:max-content!important;
+ max-width:275px!important;
+ align-items:flex-start!important;
+ gap:3px!important
+}
+.site-header .brand-lockup .brand-title,
+.site-footer .footer-brand .brand-title{
+ font-family:Georgia,"Times New Roman",serif!important;
+ letter-spacing:-.035em!important;
+ font-weight:400!important;
+ white-space:nowrap!important;
+ word-break:normal!important
+}
+.site-header .brand-lockup .brand-title{font-size:25px!important;line-height:1.1!important}
+.site-header .brand-lockup .brand-tagline{
+ display:block!important;padding-left:50px!important;
+ margin:0!important;font:11px/1.4 Arial,Helvetica,sans-serif!important;
+ letter-spacing:.025em!important;white-space:nowrap!important
+}
+.site-footer .footer-brand[translate="no"]{
+ display:grid!important;
+ grid-template-columns:48px minmax(0,1fr)!important;
+ grid-template-rows:auto auto!important;
+ column-gap:13px!important;
+ row-gap:4px!important;
+ align-items:center!important;
+ align-content:start!important;
+ justify-items:start!important;
+ width:max-content!important;
+ max-width:100%!important;
+ min-width:245px!important;
+ padding:0!important
+}
+.site-footer .footer-brand .brand-top{display:contents!important}
+.site-footer .footer-brand .brand-mark{
+ grid-column:1!important;
+ grid-row:1 / span 2!important;
+ width:48px!important;height:48px!important;
+ align-self:center!important
+}
+.site-footer .footer-brand .brand-title{
+ grid-column:2!important;grid-row:1!important;
+ font-size:27px!important;
+ line-height:1.08!important;
+ align-self:end!important
+}
+.site-footer .footer-brand .brand-tagline{
+ grid-column:2!important;grid-row:2!important;
+ display:block!important;
+ font:12px/1.45 Arial,Helvetica,sans-serif!important;
+ letter-spacing:.02em!important;
+ padding:0!important;
+ margin:0!important;
+ flex-basis:auto!important;
+ white-space:nowrap!important;
+ align-self:start!important
+}
+@media(max-width:1100px){
+ .site-header a.brand.brand-lockup[translate="no"]{min-width:185px!important}
+ .site-header .brand-lockup .brand-title{font-size:22px!important}
+ .site-header .brand-lockup .brand-tagline{padding-left:44px!important;font-size:10px!important}
+}
+@media(max-width:640px){
+ .site-header a.brand.brand-lockup[translate="no"]{min-width:172px!important}
+ .site-header .brand-lockup .brand-title{font-size:20px!important}
+ .site-header .brand-lockup .brand-tagline{padding-left:37px!important;font-size:9px!important}
+ .site-footer .footer-brand[translate="no"]{
+  grid-template-columns:42px minmax(0,1fr)!important;
+  min-width:235px!important;column-gap:11px!important
+ }
+ .site-footer .footer-brand .brand-mark{width:42px!important;height:42px!important}
+ .site-footer .footer-brand .brand-title{font-size:24px!important}
+ .site-footer .footer-brand .brand-tagline{font-size:11px!important}
+}
