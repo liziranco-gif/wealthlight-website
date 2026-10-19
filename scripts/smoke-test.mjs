@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {setTimeout as delay} from 'node:timers/promises';
 const port='19473';
 const proc=spawn(process.execPath,['server.mjs'],{
- cwd:process.cwd(),env:{...process.env,PORT:port,RESEND_API_KEY:'',CONTACT_FROM_EMAIL:'',CONTACT_TO_EMAIL:''},
+ cwd:process.cwd(),env:{...process.env,PORT:port,SITE_ACCESS_PASSWORD:'',RESEND_API_KEY:'',CONTACT_FROM_EMAIL:'',CONTACT_TO_EMAIL:''},
  stdio:['ignore','pipe','pipe']
 });
 let output='';
@@ -20,12 +20,26 @@ async function waitForServer(){
 }
 try{
  await waitForServer();
- for(const url of ['/','/index.html','/about.html','/markets.html','/research.html','/risk.html','/contact.html','/contact-success.html','/styles/site.css','/scripts/site.js','/scripts/contact.js','/assets/hero-mountains.jpg','/styles/market-intelligence-v11.css']){
+ for(const url of ['/','/index.html','/about.html','/markets.html','/research.html','/risk.html','/contact.html','/styles/site.css','/scripts/site.js','/scripts/contact.js','/assets/hero-mountains.jpg','/styles/market-intelligence-v11.css']){
   const r=await fetch(base+url);
   assert.equal(r.status,200,url+' must be served');
   const b=await r.arrayBuffer();
   assert.ok(b.byteLength>20,url+' must not be empty');
  }
+ const favicon=await fetch(base+'/favicon.ico');
+ assert.equal(favicon.status,200,'Browser favicon should always load');
+ assert.match(favicon.headers.get('content-type')||'',/image\/png/);
+ const faviconBytes=Buffer.from(await favicon.arrayBuffer());
+ assert.equal(faviconBytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a','Favicon must be the actual PNG logo');
+ const obsolete=await fetch(base+'/contact-success.html',{redirect:'manual'});
+ assert.equal(obsolete.status,303,'Old standalone success URL must not display a fake form submission result');
+ assert.equal(obsolete.headers.get('location'),'/contact.html');
+ const initialAsset=await fetch(base+'/assets/hero-mountains.jpg');
+ assert.equal(initialAsset.status,200);
+ const etag=initialAsset.headers.get('etag');
+ assert.ok(etag,'Images need a revalidation token');
+ const sameAsset=await fetch(base+'/assets/hero-mountains.jpg',{headers:{'If-None-Match':etag}});
+ assert.equal(sameAsset.status,304,'Repeat image request should not transfer the file again');
  const homeHTML=await (await fetch(base+'/index.html')).text();
  assert.ok(homeHTML.includes('wl-research-ribbon'),'Research coverage ribbon must remain visible');
  assert.ok(!homeHTML.includes('wl-financial-art'),'No procedural chart layers may be used');
@@ -63,6 +77,7 @@ try{
  assert.ok(homeHTML.includes('class="button ghost" href="/contact.html">Start a Conversation'), 'Home conversation button should open actual contact form');
  const contactHTML=await (await fetch(base+'/contact.html')).text();
  assert.ok(contactHTML.includes('wealthlight-contact-form'),'Contact page missing real form');
+ assert.ok(!contactHTML.includes('The form becomes available after secure email delivery is enabled.'),'Contact page must not show outdated form-unavailable text');
  assert.ok(contactHTML.includes('action="https://formsubmit.co/ajax/hr@wealthlight.net"'),'Contact must submit to the same-page AJAX endpoint');
  assert.ok(contactHTML.includes('name="_subject" value="有人在你的网站中留言了"'),'Notify the official inbox with the requested Chinese email subject');
  assert.ok(!contactHTML.includes('name="_next"'),'Contact must not redirect to external or secondary pages');
