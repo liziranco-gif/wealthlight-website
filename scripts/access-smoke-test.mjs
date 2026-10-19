@@ -33,6 +33,10 @@ try{
   assert.notEqual(r.status,200,'Unauthenticated access leaked '+path);
   checkNoindex(r);
  }
+ const publicIcon=await fetch(url+'/favicon.ico');
+ assert.equal(publicIcon.status,200,'Password page browser icon should be public');
+ assert.match(publicIcon.headers.get('content-type')||'',/image\/png/);
+ checkNoindex(publicIcon);
  const logo=await fetch(url+'/assets/wealthlight-logo-light.png');
  assert.equal(logo.status,200,'Only the public login logo should remain readable');checkNoindex(logo);
  const login=await fetch(url+'/access?next=%2Fcontact.html');
@@ -54,6 +58,15 @@ try{
   const r=await fetch(url+path,{headers:{Cookie:cookie}});
   assert.equal(r.status,200,'Authenticated session should read '+path);checkNoindex(r);
  }
+ const authenticated=await fetch(url+'/assets/hero-mountains.jpg',{headers:{Cookie:cookie}});
+ assert.equal(authenticated.status,200);assert.match(authenticated.headers.get('cache-control')||'',/private, no-cache/);
+ const imageTag=authenticated.headers.get('etag');assert.ok(imageTag,'Protected photos need ETags');
+ const cached=await fetch(url+'/assets/hero-mountains.jpg',{headers:{Cookie:cookie,'If-None-Match':imageTag}});
+ assert.equal(cached.status,304,'Authenticated revalidation should return a lightweight 304');checkNoindex(cached);
+ const unauthenticated=await fetch(url+'/assets/hero-mountains.jpg',{headers:{'If-None-Match':imageTag}});
+ assert.equal(unauthenticated.status,401,'Never return 304 or content without authenticated cookie');
+ const obsolete=await fetch(url+'/contact-success.html',{headers:{Cookie:cookie},redirect:'manual'});
+ assert.equal(obsolete.status,303);assert.equal(obsolete.headers.get('location'),'/contact.html');
  const tampered=cookie.replace(/[a-f0-9]$/,x=>x==='f'?'e':'f');
  assert.equal((await fetch(url+'/about.html',{headers:{Cookie:tampered}})).status,401,'Forged session must fail');
  const external=await fetch(url+'/access',{method:'POST',headers,body:new URLSearchParams({password:pass,next:'//evil.test'}),redirect:'manual'});
