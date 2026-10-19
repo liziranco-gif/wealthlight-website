@@ -81,7 +81,7 @@ try{
  assert.ok(contactHTML.includes('action="https://formsubmit.co/ajax/hr@wealthlight.net"'),'Contact must submit to the same-page AJAX endpoint');
  assert.ok(!contactHTML.includes('DIRECT EMAIL / OFFICIAL INBOX'),'Contact sidebar must not advertise the private receiving address');
  assert.ok(!contactHTML.includes('mailto:hr@wealthlight.net'),'Contact page must not render HR mailto links');
- assert.equal((contactHTML.match(/hr@wealthlight\\.net/g)||[]).length,1,'Only invisible FormSubmit delivery action may contain recipient');
+ assert.equal((contactHTML.match(/hr@wealthlight\.net/g)||[]).length,1,'Only invisible FormSubmit delivery action may contain recipient');
  assert.ok(contactHTML.includes('name="_subject" value="有人在你的网站中留言了"'),'Notify the official inbox with the requested Chinese email subject');
  assert.ok(!contactHTML.includes('name="_next"'),'Contact must not redirect to external or secondary pages');
  assert.ok(contactHTML.includes('Submission Successful.'),'Submission confirmation must display inside the contact page');
@@ -92,7 +92,7 @@ try{
  assert.ok(!contactJS.includes('/api/contact/status'),'Contact page must not depend on Resend API configuration');
  assert.ok(contactJS.includes('event.preventDefault()'),'Form submit must not navigate away');
  assert.ok(!contactJS.includes('email hr@wealthlight.net'),'Form errors must not expose private recipient');
- assert.equal((contactJS.match(/hr@wealthlight\\.net/g)||[]).length,1,'Recipient must appear only in the delivery endpoint');
+ assert.equal((contactJS.match(/hr@wealthlight\.net/g)||[]).length,1,'Recipient must appear only in the delivery endpoint');
  assert.ok(contactJS.includes("result.success===true||result.success==='true'"),'Only truthfully accepted FormSubmit messages show success');
  assert.ok(contactJS.includes('form.hidden=true')&&contactJS.includes('success.hidden=false'),'Success is shown inline after confirmed acceptance');
  const status=await(await fetch(base+'/api/contact/status')).json();
