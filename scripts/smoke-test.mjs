@@ -37,7 +37,8 @@ try{
  for(const page of ['index.html','about.html','markets.html','research.html','risk.html','contact.html']){
   const doc=await(await fetch(base+'/'+page)).text();
   assert.ok(doc.includes('wealthlight-visual-v16.css'),'Cohesive scene CSS missing from '+page);
-  assert.ok(doc.includes('class="brand brand-lockup"')&&doc.includes('财富之光'),'Brand A missing on '+page);
+  assert.ok(doc.includes('class="brand brand-lockup"')&&doc.includes('class="brand-title">WealthLight</span>')&&doc.includes('See the Market Differently.'),'Official English brand missing on '+page);
+  assert.ok(!doc.includes('财富之光')&&!doc.includes('换个角度看市场。'),'Chinese translation must not replace the company brand on '+page);
   assert.ok(!doc.includes('<div class="footer-brand"><img src="/assets/wealthlight-logo-light.png"'),'Duplicate footer lockup remains on '+page);
  }
  const sceneStyle=await(await fetch(base+'/styles/wealthlight-live-v17.css')).text();
@@ -47,6 +48,9 @@ try{
  for(const page of imagePages){
   const markup=await(await fetch(base+'/'+page)).text();
   assert.ok(markup.includes('wealthlight-live-v17.css?v=actual17'),page+': live photographic style not linked');
+  assert.ok(markup.includes('class="brand-title">WealthLight</span>'),'English WealthLight brand missing on '+page);
+  assert.ok(markup.includes('class="footer-brand" translate="no"'),'Brand slogan must remain English and untranslated on '+page);
+  assert.ok(!markup.includes('财富之光')&&!markup.includes('换个角度看市场。'),'Old Chinese lockup found on '+page);
   assert.ok(markup.includes('class="wl-chapter-image"'),page+': prepared editorial photo missing');
   const match=markup.match(/class="wl-chapter-image"[^>]*><img src="(\/assets\/[^"]+)"/);
   assert.ok(match,page+': cannot identify editorial image source');
