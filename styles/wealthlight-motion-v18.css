@@ -38,7 +38,7 @@ html body .intro .intro-scene-photo{
   background-size:cover,cover,cover!important;
   background-repeat:no-repeat!important;
   filter:none!important;
-  transform:none!important;
+  transform:scale(1.026)!important;
   animation:none!important;
 }
 html body .intro .intro-caption{
