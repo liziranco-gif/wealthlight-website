@@ -1,0 +1,178 @@
+/* WealthLight / motion direction V18
+ * Motion animates ONLY prepared images and real page elements.
+ * Zero browser-drawn market graphs, particle fields or artificial blue/gold rings.
+ * Single cadence for desktop/mobile and an exact 9s scene + 1s exit intro.
+ */
+
+/* OPENING: logo remains solid and stable, photo matches homepage exactly. */
+html body .intro {
+  background:#061624!important;
+  transition:opacity 1s cubic-bezier(.25,.6,.35,1),visibility 1s!important;
+}
+html body .intro .intro-brand{
+  opacity:0;
+  transform:none!important;
+  animation:none!important;
+  width:min(68vw,540px)!important;
+  padding:0!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+html body .intro .intro-brand img{
+  display:block;width:100%;height:auto;
+  filter:none!important;
+}
+html body .intro .intro-scene{
+  opacity:0;
+  animation:none!important;
+  transform:none!important;
+}
+html body .intro .intro-scene-photo{
+  inset:0!important;
+  background-color:#061624!important;
+  background-image:
+    linear-gradient(90deg,rgba(4,15,27,.90),rgba(4,15,27,.48) 40%,rgba(4,15,27,.13) 72%,rgba(4,15,27,.07)),
+    linear-gradient(180deg,rgba(4,17,29,.15),transparent 35%,rgba(6,22,36,.42) 72%,#061624 100%),
+    url('/assets/market-landscape-v13.jpg')!important;
+  background-position:center,center,58% 51%!important;
+  background-size:cover,cover,cover!important;
+  background-repeat:no-repeat!important;
+  filter:none!important;
+  transform:none!important;
+  animation:none!important;
+}
+html body .intro .intro-caption{
+  opacity:0;
+  color:#c9d5dd!important;
+  letter-spacing:.14em!important;
+  font-size:10px!important;
+  font-weight:400;
+  animation:none!important;
+}
+html body .intro .intro-progress{
+  width:min(240px,48vw)!important;
+  height:1px!important;
+  background:rgba(221,234,241,.20)!important;
+}
+html body .intro .intro-progress i{
+  width:0;
+  height:100%;
+  background:#d4e0e7!important;
+  opacity:.8!important;
+  animation:none!important;
+}
+html body .intro .intro-aura,
+html body .intro .intro-scene-fog{display:none!important}
+html body .intro.is-playing .intro-brand{
+  animation:wl-v18-logo 9s linear both!important
+}
+html body .intro.is-playing .intro-caption{
+  animation:wl-v18-caption 9s linear both!important
+}
+html body .intro.is-playing .intro-scene{
+  animation:wl-v18-scene 9s cubic-bezier(.3,.5,.45,1) both!important
+}
+html body .intro.is-playing .intro-progress i{
+  animation:wl-v18-progress 9s linear both!important
+}
+@keyframes wl-v18-logo{
+  0%,7%{opacity:0}
+  18%,70%{opacity:1}
+  92%,100%{opacity:0}
+}
+@keyframes wl-v18-caption{
+  0%,24%{opacity:0}
+  37%,70%{opacity:.74}
+  86%,100%{opacity:0}
+}
+@keyframes wl-v18-scene{
+  0%,49%{opacity:0}
+  74%{opacity:.46}
+  99%,100%{opacity:1}
+}
+@keyframes wl-v18-progress{from{width:0}to{width:100%}}
+
+/* PREPARED PHOTO PLANES: gentle lateral glide without zoom oscillation.
+   No change of perspective or artificial breathing zoom. */
+html body .home-hero .home-hero-photo,
+html body .page-hero .scene-photo,
+html body .market-stage .market-stage-photo{
+  animation:wl-v18-landscape 78s cubic-bezier(.5,.06,.5,.94) infinite alternate!important;
+  transform:translate3d(0,0,0) scale(1.026)!important;
+  will-change:transform!important;
+  filter:none!important;
+}
+@keyframes wl-v18-landscape{
+  from{transform:translate3d(-.3%,0,0) scale(1.026)}
+  to{transform:translate3d(.3%,0,0) scale(1.026)}
+}
+/* Editorial images rise once, only as their section reaches the viewport.
+   They do not drift out of alignment or endlessly breathe. */
+html body .content-section .wl-chapter-image img{
+  animation:none!important;
+  transform:scale(1.035)!important;
+  will-change:auto!important;
+}
+html body .content-section .wl-chapter-image{
+  transition:opacity 1.4s cubic-bezier(.24,.66,.3,1),
+             transform 1.4s cubic-bezier(.24,.66,.3,1)!important;
+  transform:none;
+}
+html body.wl-motion-ready .content-section.has-image-scene .wl-chapter-image:not(.is-in-view){
+  opacity:0!important;
+  transform:translate3d(0,8px,0)!important;
+}
+html body.wl-motion-ready .content-section.has-image-scene .wl-chapter-image.is-in-view{
+  opacity:.27!important;
+  transform:none!important;
+}
+html body .reveal-scroll:not(.is-revealed){
+  transform:translate3d(0,7px,0)!important;
+  opacity:0!important;
+}
+html body .reveal-scroll.is-revealed{
+  opacity:1!important;
+  transform:none!important;
+  transition:opacity .68s cubic-bezier(.2,.7,.3,1) var(--reveal-delay,0ms),
+             transform .68s cubic-bezier(.2,.7,.3,1) var(--reveal-delay,0ms)!important
+}
+/* Richness comes from prepared visuals and typography, not exaggerated hover shifts. */
+html body .button,
+html body .market-slice,
+html body .research-links>a,
+html body .line-column{
+  transition:background-color .24s ease,border-color .24s ease,color .24s ease,
+             transform .24s ease,box-shadow .24s ease!important
+}
+html body .button:hover,
+html body .market-slice:hover,
+html body .line-column:hover,
+html body .research-links>a:hover{transform:translate3d(0,-1px,0)!important}
+html body .market-slice img,
+html body .hero-pillars img{animation:none!important;transform:none!important}
+
+@media(max-width:700px){
+ html body .intro .intro-brand{width:min(80vw,460px)!important}
+ html body .intro .intro-caption{font-size:9px!important;letter-spacing:.08em!important}
+ html body .intro .intro-scene-photo{background-position:center,center,64% 50%!important}
+ html body.wl-motion-ready .content-section.has-image-scene .wl-chapter-image.is-in-view{opacity:.13!important}
+ html body .home-hero .home-hero-photo,
+ html body .page-hero .scene-photo,
+ html body .market-stage .market-stage-photo{
+   animation:none!important;transform:none!important;will-change:auto!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html body .intro{display:none!important}
+ html body .home-hero .home-hero-photo,
+ html body .page-hero .scene-photo,
+ html body .market-stage .market-stage-photo,
+ html body .content-section .wl-chapter-image,
+ html body .content-section .wl-chapter-image img{
+  animation:none!important;transform:none!important;transition:none!important;will-change:auto!important
+ }
+ html body .content-section .wl-chapter-image{opacity:.25!important}
+ html body .reveal-scroll,html body .reveal-scroll:not(.is-revealed){
+  opacity:1!important;transform:none!important;transition:none!important
+ }
+}
