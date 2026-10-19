@@ -176,3 +176,44 @@ html body .hero-pillars img{animation:none!important;transform:none!important}
   opacity:1!important;transform:none!important;transition:none!important
  }
 }
+
+/* Soft, one-time entrances do NOT hide content before JS initializes.
+   This avoids the flash/jump seen with the old reveal-scroll approach. */
+html body .wl-soft-enter{
+ animation:wl-v18-editorial-enter .72s cubic-bezier(.2,.7,.3,1) both!important
+}
+@keyframes wl-v18-editorial-enter{
+ from{opacity:.84;transform:translate3d(0,7px,0)}
+ to{opacity:1;transform:none}
+}
+html body .content-section .wl-chapter-image.is-in-view{
+ animation:wl-v18-photo-enter 1.35s cubic-bezier(.22,.65,.3,1) both!important
+}
+@keyframes wl-v18-photo-enter{
+ from{opacity:.14;transform:translate3d(0,6px,0)}
+ to{opacity:.27;transform:none}
+}
+@media(max-width:1080px){
+ html body .content-section .wl-chapter-image.is-in-view{
+  animation-name:wl-v18-photo-tablet!important
+ }
+ @keyframes wl-v18-photo-tablet{
+  from{opacity:.10;transform:translate3d(0,5px,0)}
+  to{opacity:.21;transform:none}
+ }
+}
+@media(max-width:700px){
+ html body .content-section .wl-chapter-image.is-in-view{
+  animation-name:wl-v18-photo-mobile!important
+ }
+ @keyframes wl-v18-photo-mobile{
+  from{opacity:.075;transform:none}
+  to{opacity:.13;transform:none}
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html body .wl-soft-enter,
+ html body .content-section .wl-chapter-image.is-in-view{
+  animation:none!important;transform:none!important
+ }
+}
