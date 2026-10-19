@@ -63,6 +63,9 @@ try{
  assert.ok(newBehavior.includes("intro.classList.add('is-playing')"),'Intro motion must start from a synchronized script frame');
  assert.ok(newBehavior.includes("window.setTimeout(()=>hide(false),9000)")&&newBehavior.includes("window.setTimeout(()=>{intro.hidden=true;intro.classList.remove('is-playing')},1000)"),'Intro must last 9 seconds plus 1 second exit');
  assert.ok(!newBehavior.includes('hero-pillars article,.line-column'),'Old per-card stagger must be removed');
+ assert.ok(newBehavior.includes("entry.target.classList.add('wl-soft-enter')"),'Text should animate once without hidden prefade');
+ assert.ok(!newBehavior.includes("node.classList.add('reveal-scroll')"),'Do not hide content while waiting for scroll observers');
+ assert.ok(newMotion.includes('wl-v18-editorial-enter')&&newMotion.includes('wl-v18-photo-enter'),'Nonblocking real photo entrances must be styled');
  const sceneStyle=await(await fetch(base+'/styles/wealthlight-live-v17.css')).text();
  assert.ok(sceneStyle.includes('wl-v17-photographic-drift')&&sceneStyle.includes('.wl-chapter-image'),'Image movement and editorial photo composition are missing');
  assert.ok(!sceneStyle.includes('canvas.getContext')&&!sceneStyle.includes('market-trends.png'),'Visual scene must use prepared photo assets, not generated charts');
