@@ -55,6 +55,14 @@ try{
   assert.ok(!doc.includes('财富之光')&&!doc.includes('换个角度看市场。'),'Chinese translation must not replace the company brand on '+page);
   assert.ok(!doc.includes('<div class="footer-brand"><img src="/assets/wealthlight-logo-light.png"'),'Duplicate footer lockup remains on '+page);
  }
+ const newMotion=await(await fetch(base+'/styles/wealthlight-motion-v18.css')).text();
+ assert.ok(newMotion.includes('wl-v18-logo')&&newMotion.includes('wl-v18-scene'),'Synchronized ten-second intro must exist');
+ assert.ok(newMotion.includes("url('/assets/market-landscape-v13.jpg')"),'Intro must share exact actual homepage image');
+ assert.ok(newMotion.includes('wl-v18-landscape')&&!newMotion.includes('scene-breathe 28s'),'Photo motion must avoid old breathing zoom');
+ const newBehavior=await(await fetch(base+'/scripts/site.js')).text();
+ assert.ok(newBehavior.includes("intro.classList.add('is-playing')"),'Intro motion must start from a synchronized script frame');
+ assert.ok(newBehavior.includes("window.setTimeout(()=>hide(false),9000)")&&newBehavior.includes("window.setTimeout(()=>{intro.hidden=true;intro.classList.remove('is-playing')},1000)"),'Intro must last 9 seconds plus 1 second exit');
+ assert.ok(!newBehavior.includes('hero-pillars article,.line-column'),'Old per-card stagger must be removed');
  const sceneStyle=await(await fetch(base+'/styles/wealthlight-live-v17.css')).text();
  assert.ok(sceneStyle.includes('wl-v17-photographic-drift')&&sceneStyle.includes('.wl-chapter-image'),'Image movement and editorial photo composition are missing');
  assert.ok(!sceneStyle.includes('canvas.getContext')&&!sceneStyle.includes('market-trends.png'),'Visual scene must use prepared photo assets, not generated charts');
@@ -62,6 +70,8 @@ try{
  for(const page of imagePages){
   const markup=await(await fetch(base+'/'+page)).text();
   assert.ok(markup.includes('wealthlight-live-v17.css?v=actual17'),page+': live photographic style not linked');
+  assert.ok(markup.includes('wealthlight-motion-v18.css?v=cinema18'),page+': unified movement rules missing');
+  assert.ok(markup.includes('/scripts/site.js?v=cinema18'),page+': modern movement script not linked');
   assert.ok(markup.includes('class="brand-title">WealthLight</span>'),'English WealthLight brand missing on '+page);
   assert.ok(markup.includes('class="footer-brand" translate="no"'),'Brand slogan must remain English and untranslated on '+page);
   assert.ok(!markup.includes('财富之光')&&!markup.includes('换个角度看市场。'),'Old Chinese lockup found on '+page);
