@@ -44,7 +44,7 @@ function secureHeaders(res){
 function gatePage(next,reason=''){
  const target=escapeHtml(safePath(next));
  const error=reason?'<p class="error" role="alert">'+escapeHtml(reason)+'</p>':'';
- return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive"><meta name="theme-color" content="#041523"><title>Private Access | WealthLight</title><style>
+ return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive"><meta name="theme-color" content="#041523"><link rel="icon" type="image/png" href="/favicon.ico"><title>Private Access | WealthLight</title><style>
  *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 15%,#12344b,#071a2a 52%,#03101d);color:#f3f7fb;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;display:grid;place-items:center;padding:30px}
  .panel{width:min(100%,470px);padding:clamp(28px,5vw,53px);border:1px solid rgba(199,223,236,.24);background:rgba(4,18,31,.91);box-shadow:0 25px 90px rgba(0,0,0,.28)}
  .brand{display:block;max-width:255px;width:80%;height:auto;object-fit:contain;margin:0 auto 34px;filter:brightness(1.45)}
@@ -189,13 +189,35 @@ async function serve(req,res,pathname){
  if(!allowed||relative.split('/').some(t=>t.startsWith('.'))||relative.includes('..')){res.writeHead(404);res.end('Not found');return}
  const full=path.resolve(root,relative);if(!full.startsWith(root+path.sep)){res.writeHead(403);res.end('Forbidden');return}
  const ext=path.extname(full).toLowerCase();if(!mime[ext]){res.writeHead(404);res.end('Not found');return}
- try{const data=await fs.readFile(full);res.writeHead(200,{'Content-Type':mime[ext],'Cache-Control':accessControlled?'private, no-store':(ext==='.html'||ext==='.css')?'no-cache, max-age=0':'public, max-age=120','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY'});res.end(req.method==='HEAD'?undefined:data)}
- catch{res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found')}
+ try{
+  // Validate access before reaching this function. Browser must revalidate its
+  // private cache with the server on every navigation; authenticated images
+  // can then return a small 304 rather than transferring the full JPEG again.
+  const stat=await fs.stat(full);
+  if(!stat.isFile()){res.writeHead(404);res.end('Not found');return}
+  const etag='W/"'+stat.size.toString(16)+'-'+Math.round(stat.mtimeMs).toString(16)+'"';
+  const cache=accessControlled?'private, no-cache':'public, max-age=180';
+  const headers={'Content-Type':mime[ext],'Cache-Control':cache,'ETag':etag,'Vary':'Cookie','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY'};
+  if(req.headers['if-none-match']===etag){res.writeHead(304,headers);res.end();return}
+  const data=await fs.readFile(full);
+  res.writeHead(200,headers);
+  res.end(req.method==='HEAD'?undefined:data)
+ }catch{res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'});res.end('Not found')}
 }
 const server=http.createServer(async(req,res)=>{
  let u;try{u=new URL(req.url||'/', 'http://localhost')}catch{reply(res,400,{error:'Invalid URL'});return}
  const name=u.pathname;
  secureHeaders(res);
+ if(name==='/favicon.ico'&&(req.method==='GET'||req.method==='HEAD')){
+  // Serve the same genuine brand PNG at the browser's automatic icon URL.
+  // Works on the private password page without exposing other website files.
+  try{
+   const icon=await fs.readFile(path.join(root,'assets/wealthlight-symbol.png'));
+   res.writeHead(200,{'Content-Type':'image/png','Cache-Control':'public, max-age=3600','X-Content-Type-Options':'nosniff'});
+   res.end(req.method==='HEAD'?undefined:icon);
+  }catch{res.writeHead(404);res.end()}
+  return;
+ }
  if(name==='/robots.txt'&&(req.method==='GET'||req.method==='HEAD')){
   res.writeHead(200,{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'});
   res.end(req.method==='HEAD'?undefined:'User-agent: *\nDisallow: /\n');
@@ -215,6 +237,11 @@ const server=http.createServer(async(req,res)=>{
  // Serve only the brand logo on the sign-in page; all other files require a signed session.
  if(accessControlled&&!verifySession(req)&&name!=='/healthz'&&name!=='/assets/wealthlight-logo-light.png'){
   showGate(req,res,req.method==='GET'||req.method==='HEAD'?req.url:'/');return;
+ }
+ // The old standalone success page was a misleading false-positive if
+ // opened directly. The active contact form now shows success inline.
+ if(name==='/contact-success.html'&&(req.method==='GET'||req.method==='HEAD')){
+  res.writeHead(303,{'Location':'/contact.html','Cache-Control':'no-store'});res.end();return
  }
  if(name==='/healthz'){reply(res,200,{ok:true});return}
  if(name==='/api/contact/status'&&req.method==='GET'){reply(res,200,{ready,turnstileSiteKey:ready&&hasCaptcha?turnstileSiteKey:null});return}
