@@ -30,16 +30,12 @@ if(allowed && 'IntersectionObserver' in window){
  const textObserver=new IntersectionObserver(entries=>{
   for(const entry of entries){
    if(entry.isIntersecting){
-    entry.target.classList.add('is-revealed');
+    entry.target.classList.add('wl-soft-enter');
     textObserver.unobserve(entry.target);
    }
   }
  },{rootMargin:'0px 0px -24px 0px',threshold:.08});
- for(const [i,node] of [...targets].entries()){
-  node.classList.add('reveal-scroll');
-  node.style.setProperty('--reveal-delay',(i%2*45)+'ms');
-  textObserver.observe(node);
- }
+ for(const node of targets){textObserver.observe(node)}
  const sceneObserver=new IntersectionObserver(entries=>{
   for(const entry of entries){
    if(entry.isIntersecting){
@@ -49,7 +45,6 @@ if(allowed && 'IntersectionObserver' in window){
   }
  },{rootMargin:'0px 0px -25px 0px',threshold:.05});
  document.querySelectorAll('.wl-chapter-image').forEach(node=>sceneObserver.observe(node));
- document.body.classList.add('wl-motion-ready');
 }
 
 const intro=document.getElementById('intro');
