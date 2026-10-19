@@ -56,14 +56,14 @@
     if(msg.includes('activat')||msg.includes('confirm')){
      throw new Error('This contact channel is being activated. Please try again later.');
     }
-    throw new Error('We could not send your message. Please try again or email hr@wealthlight.net.');
+    throw new Error('We could not send your message at the moment. Please try again shortly.');
    }
    form.hidden=true;
    success.hidden=false;
    success.scrollIntoView({behavior:'smooth',block:'center'});
   }catch(error){
    report(error.name==='AbortError'
-    ?'The submission timed out. Please try again or email hr@wealthlight.net.'
+    ?'The submission timed out. Please try again shortly.'
     :(error.message||'The submission could not be sent. Please try again.'),'error');
   }finally{
    clearTimeout(timeout);
