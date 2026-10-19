@@ -40,6 +40,23 @@ try{
   assert.ok(doc.includes('class="brand brand-lockup"')&&doc.includes('财富之光'),'Brand A missing on '+page);
   assert.ok(!doc.includes('<div class="footer-brand"><img src="/assets/wealthlight-logo-light.png"'),'Duplicate footer lockup remains on '+page);
  }
+ const sceneStyle=await(await fetch(base+'/styles/wealthlight-live-v17.css')).text();
+ assert.ok(sceneStyle.includes('wl-v17-photographic-drift')&&sceneStyle.includes('.wl-chapter-image'),'Image movement and editorial photo composition are missing');
+ assert.ok(!sceneStyle.includes('canvas.getContext')&&!sceneStyle.includes('market-trends.png'),'Visual scene must use prepared photo assets, not generated charts');
+ const imagePages=['index.html','about.html','capabilities.html','markets.html','strategies.html','research.html','risk.html','approach.html','perspective.html','technology.html','institutional.html','contact.html','disclosure.html'];
+ for(const page of imagePages){
+  const markup=await(await fetch(base+'/'+page)).text();
+  assert.ok(markup.includes('wealthlight-live-v17.css?v=actual17'),page+': live photographic style not linked');
+  assert.ok(markup.includes('class="wl-chapter-image"'),page+': prepared editorial photo missing');
+  const match=markup.match(/class="wl-chapter-image"[^>]*><img src="(\/assets\/[^"]+)"/);
+  assert.ok(match,page+': cannot identify editorial image source');
+  const img=await fetch(base+match[1]);
+  assert.equal(img.status,200,page+': media file not served');
+  const bytes=Buffer.from(await img.arrayBuffer());
+  assert.ok(bytes.length>8000,page+': image may be invalid');
+  assert.equal(bytes[0],0xff,page+': expected real JPEG photographic file');
+ }
+ assert.ok(homeHTML.includes('class="button ghost" href="/contact.html">Start a Conversation'), 'Home conversation button should open actual contact form');
  const contactHTML=await (await fetch(base+'/contact.html')).text();
  assert.ok(contactHTML.includes('wealthlight-contact-form'),'Contact page missing real form');
  assert.ok(contactHTML.includes('action="https://formsubmit.co/ajax/hr@wealthlight.net"'),'Contact must submit to the same-page AJAX endpoint');
