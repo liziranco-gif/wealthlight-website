@@ -1,0 +1,122 @@
+/* WealthLight live visual refinements v17 — existing JPG/PNG assets only.
+   No CSS-generated graphs, charts, mountains or glowing paths.
+   Media in each editorial chapter is an <img>, positioned and faded with CSS. */
+
+:root{--wl-photo-motion:52s}
+html body .home-hero .home-hero-photo,
+html body .page-hero .scene-photo,
+html body .market-stage .market-stage-photo{
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  transform:translate3d(0,0,0) scale(1.025)!important;
+  animation:wl-v17-photographic-drift var(--wl-photo-motion) ease-in-out infinite alternate!important;
+  will-change:transform!important;
+}
+@keyframes wl-v17-photographic-drift{
+  from{transform:translate3d(-.4%,0,0) scale(1.025)}
+  to{transform:translate3d(.6%,-.25%,0) scale(1.032)}
+}
+/* Soften each image's transition into the site's navy canvas. */
+html body .home-hero .home-hero-shade{
+ background:linear-gradient(90deg,rgba(4,15,27,.90),rgba(4,15,27,.48) 40%,rgba(4,15,27,.13) 72%,rgba(4,15,27,.07)),
+ linear-gradient(180deg,rgba(4,17,29,.15),transparent 35%,rgba(6,22,36,.42) 72%,#061624 100%)!important
+}
+html body .page-hero .scene-darken{
+ background:linear-gradient(90deg,rgba(4,15,27,.86),rgba(4,15,27,.47) 43%,rgba(4,15,27,.1)),
+ linear-gradient(180deg,rgba(4,17,29,.1),transparent 42%,rgba(6,22,36,.59) 72%,#061624 100%)!important
+}
+html body .market-stage::after,
+html body.home main>.market-stage:nth-of-type(n)::after{
+ background:linear-gradient(90deg,rgba(4,15,27,.88),rgba(4,15,27,.52) 40%,rgba(4,15,27,.28)),
+ linear-gradient(180deg,#061624 0%,rgba(6,22,36,.21) 26%,rgba(6,22,36,.19) 66%,#061624 100%)!important;
+ background-image:linear-gradient(90deg,rgba(4,15,27,.88),rgba(4,15,27,.52) 40%,rgba(4,15,27,.28)),
+ linear-gradient(180deg,#061624 0%,rgba(6,22,36,.21) 26%,rgba(6,22,36,.19) 66%,#061624 100%)!important
+}
+html body .page-hero::after{
+  background:linear-gradient(180deg,transparent,#061624)!important;
+  height:170px!important
+}
+/* Once-per-page editorial imagery, kept separate from HTML text. */
+html body .content-section.has-image-scene{
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  background:#061624!important
+}
+html body .content-section .wl-chapter-image{
+  position:absolute;
+  z-index:1;
+  top:-2%;
+  bottom:-2%;
+  right:-3%;
+  width:min(70%,1120px);
+  overflow:hidden;
+  pointer-events:none;
+  opacity:.27;
+  -webkit-mask-image:linear-gradient(90deg,transparent 1%,rgba(0,0,0,.5) 27%,#000 57%,rgba(0,0,0,.65) 100%);
+  mask-image:linear-gradient(90deg,transparent 1%,rgba(0,0,0,.5) 27%,#000 57%,rgba(0,0,0,.65) 100%);
+}
+html body .content-section .wl-chapter-image::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,#061624 0%,transparent 27%,transparent 68%,#061624 100%)
+}
+html body .content-section .wl-chapter-image img{
+  width:100%;height:100%;object-fit:cover;object-position:65% 55%;
+  display:block;transform:scale(1.045);
+  animation:wl-v17-chapter-reveal 1.25s ease-out both
+}
+@keyframes wl-v17-chapter-reveal{from{opacity:0;transform:scale(1.065)}to{opacity:1;transform:scale(1.045)}}
+html body .content-section.has-image-scene>.shell{position:relative!important;z-index:3!important}
+html body .content-section.has-image-scene .section-heading h2,
+html body .content-section.has-image-scene .section-heading p{
+  text-shadow:0 2px 14px rgba(0,10,21,.35)
+}
+/* Data/research summary that was in HTML but had lost its authored styling. */
+html body .home-hero .wl-market-identity{
+  position:absolute;right:6vw;top:35%;z-index:5;
+  width:min(255px,19vw);
+  padding:12px 0 12px 20px;
+  border-left:1px solid rgba(232,192,130,.7);
+  pointer-events:none;
+  text-shadow:0 2px 9px rgba(0,10,22,.8)
+}
+html body .home-hero .wl-market-identity .wl-id-kicker{
+  display:block;color:#e9c58e;letter-spacing:.18em;
+  font:10px/1.5 ui-monospace,monospace
+}
+html body .home-hero .wl-market-identity strong{
+  display:block;font:normal clamp(16px,1.3vw,22px)/1.33 Georgia,serif;
+  color:#eff4f6;margin:8px 0 13px
+}
+html body .home-hero .wl-market-identity span:last-child,
+html body .home-hero .wl-market-identity span:nth-last-child(2){
+  display:block;font:10px/1.7 ui-monospace,monospace;
+  color:#c5d9e5;letter-spacing:.06em
+}
+html body .home-hero .wl-market-identity span:last-child{color:#e2c59c}
+html body .site-header .brand-lockup .brand-title{color:#fff}
+html body .site-header .brand-lockup .brand-mark{object-fit:contain!important}
+html body .site-footer .footer-brand .brand-mark{object-fit:contain!important}
+html body .market-slice{
+  background-color:rgba(5,20,34,.13)!important;
+  backdrop-filter:blur(2px);
+  transition:background-color .28s ease,border-color .28s ease,transform .28s ease
+}
+html body .market-slice:hover{background-color:rgba(8,27,44,.5)!important;transform:translateY(-2px)}
+/* Animated photos are for atmosphere, not motion-intensive presentation. */
+@media(max-width:1080px){
+ html body .home-hero .wl-market-identity{display:none}
+ html body .content-section .wl-chapter-image{width:75%;right:-12%;opacity:.21}
+}
+@media(max-width:700px){
+ html body .home-hero .home-hero-photo{background-position:64% 50%!important}
+ html body .content-section .wl-chapter-image{width:100%;right:-30%;opacity:.13}
+ html body .content-section .wl-chapter-image img{object-position:61% center}
+ html body .market-slice{backdrop-filter:none}
+}
+@media(prefers-reduced-motion:reduce){
+ html body .home-hero .home-hero-photo,
+ html body .page-hero .scene-photo,
+ html body .market-stage .market-stage-photo,
+ html body .content-section .wl-chapter-image img{
+  animation:none!important;transform:none!important;will-change:auto!important
+ }
+}
